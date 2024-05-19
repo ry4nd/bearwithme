@@ -17,6 +17,11 @@ nav {
     align-items: center;
 }
 
+nav > div {
+    display: flex;
+    align-items: center;
+}
+
 .menu-icon {
     font-size: 32px;
 }
@@ -127,7 +132,13 @@ nav {
     align-items: center;
 }
 
+.pause-icon {
+    font-size: 32px;
+    margin-right: 16px;
+}
+
 .play-icon {
+    font-size: 32px;
     margin-right: 16px;
 }
 

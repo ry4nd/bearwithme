@@ -15,6 +15,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
+import PauseCircleFilledRoundedIcon from '@mui/icons-material/PauseCircleFilledRounded';
 import PlayCircleRoundedIcon from '@mui/icons-material/PlayCircleRounded';
 import Slider from '@mui/material/Slider';
 import VolumeDown from '@mui/icons-material/VolumeDown';
@@ -22,72 +23,87 @@ import VolumeUp from '@mui/icons-material/VolumeUp';
 import GraphicEqRoundedIcon from '@mui/icons-material/GraphicEqRounded';
 
 export default function Home() {
-  const [audioRecordings, setAudioRecordings] = useState([]);   // sound recordings
-  const [isTransmitting, setIsTransmitting] = useState(false);  // heartbeat
-  const [isCrying, setIsCrying] = useState(0);                  // sound sensor
-  const [currentlyPlaying, setCurrentlyPlaying] = useState("");
-  const [volume, setVolume] = useState(30);
-
   // speaker
+  const [audioRecordings, setAudioRecordings] = useState([]);
+  const [currentlyPlaying, setCurrentlyPlaying] = useState("");
+  const [isPaused, setIsPaused] = useState(false);
+  const [volume, setVolume] = useState(30);
+  // sound sensor
+  const [isCrying, setIsCrying] = useState(0);
+  // heartbeat sensor
+  const [isTransmitting, setIsTransmitting] = useState(false);
+  
   useEffect(() => {
-    const soundRecordingsRef = ref(db, '/speaker/audioRecording');
-
-    onValue(soundRecordingsRef, (snapshot) => {
+    //speaker
+    onValue(audioRecordingsRef, (snapshot) => {
       const data = snapshot.val();
       setAudioRecordings(Object.values(data));
 
       console.log(data)
     });
-  }, []);
 
-  useEffect(() => {
-    const audioPlayingRef = ref(db, "/speaker/audioPlaying");
     onValue(audioPlayingRef, (snapshot) => {
       const data = snapshot.val();
       setCurrentlyPlaying(data);
     });
-  }, []);
-  
-  const handlePlayAudio = async (link: string) => {
-    const audioPlayingRef = ref(db, "/speaker/audioPlaying")
 
-    if (currentlyPlaying !== link) {
-      set(audioPlayingRef, link);
-      setCurrentlyPlaying(link);
-    }
-  };
+    onValue(isPausedRef, (snapshot) => {
+      const data = snapshot.val();
+      setIsPaused(data);
+    });
 
-  const handleVolumeChange = (event: Event, newValue: number | number[]) => {
-    setVolume(newValue as number);
-  };
-
-  // heartbeat sensor
-  const handleTransmitHeartbeat = () => {
-    const heartbeatRef = ref(db, "/heartbeat_data/is_recording"); // note: change when database is updated
-    set(heartbeatRef, !isTransmitting ? 1 : 0);
-    setIsTransmitting(!isTransmitting);
-
-    console.log(`isTransmitting: ${isTransmitting}`);
-  };
-
-  // sound sensor
-  useEffect(() => {
-    const isCryingRef = ref(db, "/soundSensor/isCrying");
-
+    // sound sensor
     onValue(isCryingRef, (snapshot) => {
       const data = snapshot.val();
       setIsCrying(data);
 
       console.log(`isCrying: ${data}`);
     });
-  }, [isCrying]); // note: idk if dapat "[]" or "[isCrying]" parang same behavior naman
+  }, []);
+
+  // speaker
+  const audioRecordingsRef = ref(db, '/speaker/audioRecording');
+  const audioPlayingRef = ref(db, "/speaker/audioPlaying");
+  const isPausedRef = ref(db, "/speaker/isPaused");
+  const volumeRef = ref(db, "/speaker/volume");
+  
+  const handlePlayAudio = async (link: string) => {
+    if (currentlyPlaying !== link) {
+      set(audioPlayingRef, link);
+      setCurrentlyPlaying(link);
+    }
+  };
+
+  const handlePauseAudio = async () => {
+    set(isPausedRef, !isPaused ? 1 : 0);
+    setIsPaused(!isPaused);
+
+    console.log(`isPaused: ${isPaused}`);
+  };
+
+  const handleVolumeChange = (event: Event, newValue: number | number[]) => {
+    set(volumeRef, newValue as number);
+    setVolume(newValue as number);
+  };
+
+  // sound sensor
+  const isCryingRef = ref(db, "/soundSensor/isCrying");
 
   const handleCloseNotification = () => {
-    const isCryingRef = ref(db, "/soundSensor/isCrying");
     set(isCryingRef, 0);
     setIsCrying(0);
   };
 
+  // heartbeat sensor
+  const heartbeatRef = ref(db, "/heartbeat_data/is_recording"); // note: change when database is updated
+
+  const handleTransmitHeartbeat = () => {
+    set(heartbeatRef, !isTransmitting ? 1 : 0);
+    setIsTransmitting(!isTransmitting);
+
+    console.log(`isTransmitting: ${isTransmitting}`);
+  };
+  
   return (
     <div className="grid">
       <div>
@@ -100,19 +116,21 @@ export default function Home() {
             <LogoutIcon className="logout-icon"/>
         </nav>
         <div className='sidebar'>
-          <section id="notifications" onClick={handleCloseNotification}>
-            <h2>Notifications</h2>
-            <div className="notifications-container">
-              <img src={BearCrying.src} alt="bear_crying" />
-              <div>
+          {(isCrying ? true : false) &&
+            <section id="notifications" onClick={handleCloseNotification}>
+              <h2>Notifications</h2>
+              <div className="notifications-container">
+                <img src={BearCrying.src} alt="bear_crying" />
                 <div>
-                  <h3>Your Baby is Crying!</h3>
-                  <p>Play a soothing sound</p>
+                  <div>
+                    <h3>Your Baby is Crying!</h3>
+                    <p>Play a soothing sound</p>
+                  </div>
+                  <CancelRoundedIcon className="close-icon"/>
                 </div>
-                <CancelRoundedIcon className="close-icon"/>
               </div>
-            </div>
-          </section>
+            </section>
+          }
           <section id='now-playing'>
             <h2>Now Playing</h2>
             <div className="heartbeat-container">
@@ -127,9 +145,20 @@ export default function Home() {
             </div>
             <div className="playing-container">
               <img src={BearSleeping.src} alt="bear_sleeping" />
-              <h3>lullaby</h3>
+              <h3>
+                {currentlyPlaying ?
+                (audioRecordings.map((audio: {filename: string, link: string}) => (
+                  audio.link === currentlyPlaying ?
+                  audio.filename :
+                  ""))
+                ) : 
+                "..."}
+              </h3>
               <div>
-                <PlayCircleRoundedIcon className="play-icon"/>
+                {isPaused ? 
+                  <PlayCircleRoundedIcon className="play-icon" onClick={handlePauseAudio} /> :
+                  <PauseCircleFilledRoundedIcon className="pause-icon" onClick={handlePauseAudio} />
+                }
                 <div className="slider">
                   <VolumeDown className="volumedown-icon"/>
                   <Slider 
