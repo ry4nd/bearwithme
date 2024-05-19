@@ -1,113 +1,168 @@
-import Image from "next/image";
+'use client';
+import { db } from "./firebase";
+import { set, ref, onValue } from "firebase/database";
+import { useState, useEffect } from "react";
+
+// frontend
+import './page.css';
+import Logo from './assets/logo-lilac.png'
+import BearCrying from './assets/bear_crying.png'
+import BearHeart from './assets/bear_heart.png'
+import BearSleeping from './assets/bear_sleeping.png'
+import BearHappy from './assets/bear_happy.png'
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import LogoutIcon from '@mui/icons-material/Logout';
+import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
+import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
+import PlayCircleRoundedIcon from '@mui/icons-material/PlayCircleRounded';
+import Slider from '@mui/material/Slider';
+import VolumeDown from '@mui/icons-material/VolumeDown';
+import VolumeUp from '@mui/icons-material/VolumeUp';
+import GraphicEqRoundedIcon from '@mui/icons-material/GraphicEqRounded';
 
 export default function Home() {
+  const [audioRecordings, setAudioRecordings] = useState([]);   // sound recordings
+  const [isTransmitting, setIsTransmitting] = useState(false);  // heartbeat
+  const [isCrying, setIsCrying] = useState(0);                  // sound sensor
+  const [currentlyPlaying, setCurrentlyPlaying] = useState("");
+  const [volume, setVolume] = useState(30);
+
+  // speaker
+  useEffect(() => {
+    const soundRecordingsRef = ref(db, '/speaker/audioRecording');
+
+    onValue(soundRecordingsRef, (snapshot) => {
+      const data = snapshot.val();
+      setAudioRecordings(Object.values(data));
+
+      console.log(data)
+    });
+  }, []);
+
+  useEffect(() => {
+    const audioPlayingRef = ref(db, "/speaker/audioPlaying");
+    onValue(audioPlayingRef, (snapshot) => {
+      const data = snapshot.val();
+      setCurrentlyPlaying(data);
+    });
+  }, []);
+  
+  const handlePlayAudio = async (link: string) => {
+    const audioPlayingRef = ref(db, "/speaker/audioPlaying")
+
+    if (currentlyPlaying !== link) {
+      set(audioPlayingRef, link);
+      setCurrentlyPlaying(link);
+    }
+  };
+
+  const handleVolumeChange = (event: Event, newValue: number | number[]) => {
+    setVolume(newValue as number);
+  };
+
+  // heartbeat sensor
+  const handleTransmitHeartbeat = () => {
+    const heartbeatRef = ref(db, "/heartbeat_data/is_recording"); // note: change when database is updated
+    set(heartbeatRef, !isTransmitting ? 1 : 0);
+    setIsTransmitting(!isTransmitting);
+
+    console.log(`isTransmitting: ${isTransmitting}`);
+  };
+
+  // sound sensor
+  useEffect(() => {
+    const isCryingRef = ref(db, "/soundSensor/isCrying");
+
+    onValue(isCryingRef, (snapshot) => {
+      const data = snapshot.val();
+      setIsCrying(data);
+
+      console.log(`isCrying: ${data}`);
+    });
+  }, [isCrying]); // note: idk if dapat "[]" or "[isCrying]" parang same behavior naman
+
+  const handleCloseNotification = () => {
+    const isCryingRef = ref(db, "/soundSensor/isCrying");
+    set(isCryingRef, 0);
+    setIsCrying(0);
+  };
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className="grid">
+      <div>
+        <nav>
+            <MenuRoundedIcon className="menu-icon"/>
+            <div>
+              <img src={Logo.src} alt="logo" className="logo"/>
+              <AccountCircleIcon className="account-icon"/>
+            </div>
+            <LogoutIcon className="logout-icon"/>
+        </nav>
+        <div className='sidebar'>
+          <section id="notifications">
+            <h2>Notifications</h2>
+            <div className="notifications-container">
+              <img src={BearCrying.src} alt="bear_crying" />
+              <div>
+                <div>
+                  <h3>Your Baby is Crying!</h3>
+                  <p>Play a soothing sound</p>
+                </div>
+                <CancelRoundedIcon className="close-icon"/>
+              </div>
+            </div>
+          </section>
+          <section id='now-playing'>
+            <h2>Now Playing</h2>
+            <div className="heartbeat-container">
+              <img src={BearHeart.src} alt="bear_heart" />
+              <div>
+                <div>
+                  <h3>Send Your Heartbeat!</h3>
+                  <p>Comfort your baby</p>
+                </div>
+                <FavoriteRoundedIcon className="heart-icon"/>
+              </div>
+            </div>
+            <div className="playing-container">
+              <img src={BearSleeping.src} alt="bear_sleeping" />
+              <h3>lullaby</h3>
+              <div>
+                <PlayCircleRoundedIcon className="play-icon"/>
+                <div className="slider">
+                  <VolumeDown className="volumedown-icon"/>
+                  <Slider 
+                    aria-label="Volume"
+                    value={volume}
+                    onChange={handleVolumeChange}
+                    min={0} max={30} step={1}
+                    defaultValue={20} 
+                    valueLabelDisplay="auto"
+                  />
+                  <VolumeUp className="volumeup-icon"/>
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
       </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      <section id='recordings'>
+        <h1>Recordings</h1>
+        <img src={BearHappy.src} alt="bear_happy" />
+        {audioRecordings.map((audio: {filename: string; link: string}) => (
+            <div id={audio.filename} className="audio-container">
+              <p>{audio.filename}</p>
+              <div onClick={() => handlePlayAudio(audio.link)}> 
+                  {currentlyPlaying === audio.link ? 
+                  (<GraphicEqRoundedIcon className="playing-icon"/>) :
+                  (<PlayCircleRoundedIcon className="audio-play-icon"/>)
+                }
+              </div>
+            </div>
+          ))
+        }
+      </section>
+    </div>
   );
 }

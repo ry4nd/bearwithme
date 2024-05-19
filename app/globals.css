@@ -1,33 +1,54 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --primary-background: #1e1e1e;
+  --secondary-background: #354146;
+  --accent-background: #292929;
+  --foreground: #f5f5f5;
+  --primary: #C9AED6;
+  --secondary: #8DC9E2;
+  --accent: #E0C8AE;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
-}
+} */
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: var(--primary-background);
+  color: var(--foreground);
+  margin: 0;
+  font-size: 12px;
 }
 
-@layer utilities {
+/* @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+} */
+
+h1, h2, h3, h4, p {
+  margin: 0;
+}
+
+h3 {
+  font-size: 1.1em;
+}
+
+h2 {
+  font-size: 1.2em;
+}
+
+h1 {
+  font-size: 1.4em;
+}
+
+p {
+  font-size: 1em;
 }
