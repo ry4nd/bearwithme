@@ -100,7 +100,7 @@ export default function Home() {
             <LogoutIcon className="logout-icon"/>
         </nav>
         <div className='sidebar'>
-          <section id="notifications">
+          <section id="notifications" onClick={handleCloseNotification}>
             <h2>Notifications</h2>
             <div className="notifications-container">
               <img src={BearCrying.src} alt="bear_crying" />
@@ -151,7 +151,7 @@ export default function Home() {
         <h1>Recordings</h1>
         <img src={BearHappy.src} alt="bear_happy" />
         {audioRecordings.map((audio: {filename: string; link: string}) => (
-            <div id={audio.filename} className="audio-container">
+            <div key={audio.filename} className="audio-container">
               <p>{audio.filename}</p>
               <div onClick={() => handlePlayAudio(audio.link)}> 
                   {currentlyPlaying === audio.link ? 
