@@ -25,18 +25,22 @@ nav > div {
 
 .menu-icon {
     font-size: 32px;
+    cursor: pointer;
 }
 
 .logo {
     width: 24px;
+    cursor: pointer;
 }
 
 .account-icon {
     display: none;
+    cursor: pointer;
 }
 
 .logout-icon {
     display: none;
+    cursor: pointer;
 }
 
 .sidebar  {
@@ -77,6 +81,7 @@ nav > div {
 .close-icon {
     font-size: 32px;
     color: var(--secondary-background);
+    cursor: pointer;
 }
 
 #now-playing > h2 {
@@ -109,6 +114,7 @@ nav > div {
 .heart-icon {
     font-size: 32px;
     color: var(--secondary-background);
+    cursor: pointer;
 }
 
 .playing-container {
@@ -136,11 +142,13 @@ nav > div {
 .pause-icon {
     font-size: 32px;
     margin-right: 16px;
+    cursor: pointer;
 }
 
 .play-icon {
     font-size: 32px;
     margin-right: 16px;
+    cursor: pointer;
 }
 
 .slider {
@@ -191,6 +199,7 @@ nav > div {
 
 .audio-play-icon {
     font-size: 32px;
+    cursor: pointer;
 }
 
 @media (min-width: 768px) {
