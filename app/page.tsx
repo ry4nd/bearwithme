@@ -120,7 +120,9 @@ export default function Home() {
             <section id="notifications" onClick={handleCloseNotification}>
               <h2>Notifications</h2>
               <div className="notifications-container">
-                <img src={BearCrying.src} alt="bear_crying" />
+                <div>
+                  <img src={BearCrying.src} alt="bear_crying" />
+                </div>
                 <div>
                   <div>
                     <h3>Your Baby is Crying!</h3>
@@ -134,7 +136,9 @@ export default function Home() {
           <section id='now-playing'>
             <h2>Now Playing</h2>
             <div className="heartbeat-container">
-              <img src={BearHeart.src} alt="bear_heart" />
+              {/* <div> */}
+                <img src={BearHeart.src} alt="bear_heart" />
+              {/* </div> */}
               <div>
                 <div>
                   <h3>Send Your Heartbeat!</h3>

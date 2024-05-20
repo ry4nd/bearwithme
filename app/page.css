@@ -66,9 +66,14 @@ nav > div {
     align-items: center;
 }
 
-.notifications-container > img {
-    width: 33%;
+.notifications-container > :nth-child(1) {
+    display: flex;
+    justify-content: center;
     margin-bottom: 8px;
+}
+
+.notifications-container img {
+    width: 33%;
 }
 
 .notifications-container > div {
