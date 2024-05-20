@@ -106,6 +106,7 @@ nav > div {
 
 .heartbeat-container > img {
     width: 33%;
+    object-fit: contain;
     margin-bottom: 8px;
 }
 
