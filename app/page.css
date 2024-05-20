@@ -66,14 +66,10 @@ nav > div {
     align-items: center;
 }
 
-.notifications-container > :nth-child(1) {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 8px;
-}
-
-.notifications-container img {
+.notifications-container > img {
     width: 33%;
+    object-fit: contain;
+    margin-bottom: 8px;
 }
 
 .notifications-container > div {
@@ -135,6 +131,7 @@ nav > div {
 
 .playing-container > img {
     width: 33%;
+    object-fit: contain;
     margin-bottom: 8px;
 }
 
@@ -187,6 +184,7 @@ nav > div {
 
 #recordings > img {
     width: 33%;
+    object-fit: contain;
     align-self: center;
     margin-bottom: 16px;
 }

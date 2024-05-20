@@ -22,9 +22,14 @@ import VolumeDown from '@mui/icons-material/VolumeDown';
 import VolumeUp from '@mui/icons-material/VolumeUp';
 import GraphicEqRoundedIcon from '@mui/icons-material/GraphicEqRounded';
 
+type AudioRecording = {
+  filename: string;
+  link: string;
+};
+
 export default function Home() {
   // speaker
-  const [audioRecordings, setAudioRecordings] = useState([]);
+  const [audioRecordings, setAudioRecordings] = useState<AudioRecording[]>([]);
   const [currentlyPlaying, setCurrentlyPlaying] = useState("");
   const [isPaused, setIsPaused] = useState(false);
   const [volume, setVolume] = useState(30);
@@ -71,7 +76,14 @@ export default function Home() {
     if (currentlyPlaying !== link) {
       set(audioPlayingRef, link);
       setCurrentlyPlaying(link);
+      setIsPaused(false);
     }
+  };
+
+  const handlePlayFirstAudio = async () => {
+    set(audioPlayingRef, audioRecordings[0].link);
+    setCurrentlyPlaying(audioRecordings[0].link);
+    setIsPaused(false);
   };
 
   const handlePauseAudio = async () => {
@@ -120,9 +132,7 @@ export default function Home() {
             <section id="notifications" onClick={handleCloseNotification}>
               <h2>Notifications</h2>
               <div className="notifications-container">
-                <div>
-                  <img src={BearCrying.src} alt="bear_crying" />
-                </div>
+                <img src={BearCrying.src} alt="bear_crying" />
                 <div>
                   <div>
                     <h3>Your Baby is Crying!</h3>
@@ -136,9 +146,7 @@ export default function Home() {
           <section id='now-playing'>
             <h2>Now Playing</h2>
             <div className="heartbeat-container">
-              {/* <div> */}
-                <img src={BearHeart.src} alt="bear_heart" />
-              {/* </div> */}
+              <img src={BearHeart.src} alt="bear_heart" />
               <div>
                 <div>
                   <h3>Send Your Heartbeat!</h3>
@@ -148,7 +156,7 @@ export default function Home() {
               </div>
             </div>
             <div className="playing-container">
-              <img src={BearSleeping.src} alt="bear_sleeping" />
+              {(currentlyPlaying) && <img src={BearSleeping.src} alt="bear_sleeping" />}
               <h3>
                 {currentlyPlaying ?
                 (audioRecordings.map((audio: {filename: string, link: string}) => (
@@ -159,9 +167,11 @@ export default function Home() {
                 "..."}
               </h3>
               <div>
-                {isPaused ? 
-                  <PlayCircleRoundedIcon className="play-icon" onClick={handlePauseAudio} /> :
-                  <PauseCircleFilledRoundedIcon className="pause-icon" onClick={handlePauseAudio} />
+                {currentlyPlaying === "" ? // note for speaker: set isPaused to 0 when audio is done playing
+                  <PlayCircleRoundedIcon className="play-icon" onClick={handlePlayFirstAudio} /> :
+                  isPaused ? 
+                    <PlayCircleRoundedIcon className="play-icon" onClick={handlePauseAudio} /> :
+                    <PauseCircleFilledRoundedIcon className="pause-icon" onClick={handlePauseAudio} />
                 }
                 <div className="slider">
                   <VolumeDown className="volumedown-icon"/>
@@ -183,7 +193,7 @@ export default function Home() {
       <section id='recordings'>
         <h1>Recordings</h1>
         <img src={BearHappy.src} alt="bear_happy" />
-        {audioRecordings.map((audio: {filename: string; link: string}) => (
+        {audioRecordings.map((audio: AudioRecording) => (
             <div key={audio.filename} className="audio-container">
               <p>{audio.filename}</p>
               <div onClick={() => handlePlayAudio(audio.link)}> 
