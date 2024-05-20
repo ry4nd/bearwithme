@@ -85,6 +85,10 @@ nav > div {
     cursor: pointer;
 }
 
+.close-icon:hover {
+    color: var(--accent-background);
+}
+
 #now-playing > h2 {
     margin-bottom: 16px;
 }
@@ -119,6 +123,10 @@ nav > div {
     cursor: pointer;
 }
 
+.heart-icon:hover {
+    color: var(--accent-background);
+}
+
 .playing-container {
     background-color: var(--secondary);
     border-radius: 24px;
@@ -148,10 +156,18 @@ nav > div {
     cursor: pointer;
 }
 
+.pause-icon:hover {
+    color: var(--accent-background);
+}
+
 .play-icon {
     font-size: 32px;
     margin-right: 16px;
     cursor: pointer;
+}
+
+.play-icon:hover {
+    color: var(--accent-background);
 }
 
 .slider {
@@ -204,6 +220,10 @@ nav > div {
 .audio-play-icon {
     font-size: 32px;
     cursor: pointer;
+}
+
+.audio-play-icon:hover {
+    color: var(--secondary);
 }
 
 @media (min-width: 768px) {
