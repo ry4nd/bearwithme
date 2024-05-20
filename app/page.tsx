@@ -32,7 +32,7 @@ export default function Home() {
   const [audioRecordings, setAudioRecordings] = useState<AudioRecording[]>([]);
   const [currentlyPlaying, setCurrentlyPlaying] = useState("");
   const [isPaused, setIsPaused] = useState(false);
-  const [volume, setVolume] = useState(30);
+  const [volume, setVolume] = useState(15);
   // sound sensor
   const [isCrying, setIsCrying] = useState(0);
   // heartbeat sensor
@@ -180,7 +180,7 @@ export default function Home() {
                     value={volume}
                     onChange={handleVolumeChange}
                     min={0} max={30} step={1}
-                    defaultValue={20} 
+                    defaultValue={15} 
                     valueLabelDisplay="auto"
                   />
                   <VolumeUp className="volumeup-icon"/>
