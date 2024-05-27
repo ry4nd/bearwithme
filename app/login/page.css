@@ -10,6 +10,7 @@
 }
 
 .login-container form {
+    padding: 20px;
     display: flex;
     flex-direction: column;
 }
@@ -19,6 +20,12 @@
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
+}
+
+.login-container p {
+    text-align: center;
+    margin-top: 10px;
+    color: rgb(245, 60, 60);
 }
 
 .login-container form button {

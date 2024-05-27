@@ -5,6 +5,7 @@ import { getAuth, connectAuthEmulator, signInWithEmailAndPassword } from 'fireba
 import { db } from "../firebase";
 import { set, ref } from "firebase/database";
 import { useLocation } from 'wouter';
+import { useRouter } from 'next/router';
 import './page.css';
 
 
@@ -12,7 +13,8 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState(''); 
     const [error, setError] = useState('');
-    const [location, setLocation] = useLocation();
+    // const [location, setLocation] = useLocation();
+    // const router = useRouter();
 
     const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -20,7 +22,7 @@ const Login = () => {
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             console.log('User logged in:', userCredential.user.uid);
-            setLocation('/');
+            // router.push('/');
         }
         catch(error : any){
             console.log(error.code);
