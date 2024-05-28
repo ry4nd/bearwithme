@@ -167,12 +167,12 @@ export default function Home() {
                 "..."}
               </h3>
               <div>
-                {currentlyPlaying === "" ? // note for speaker: set isPaused to 0 when audio is done playing
+                {/* {currentlyPlaying === "" ? // note for speaker: set isPaused to 0 when audio is done playing
                   <PlayCircleRoundedIcon className="play-icon" onClick={handlePlayFirstAudio} /> :
                   isPaused ? 
                     <PlayCircleRoundedIcon className="play-icon" onClick={handlePauseAudio} /> :
                     <PauseCircleFilledRoundedIcon className="pause-icon" onClick={handlePauseAudio} />
-                }
+                } */}
                 <div className="slider">
                   <VolumeDown className="volumedown-icon"/>
                   <Slider 
