@@ -15,6 +15,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
+import StopCircleRoundedIcon from '@mui/icons-material/StopCircleRounded';
 import PauseCircleFilledRoundedIcon from '@mui/icons-material/PauseCircleFilledRounded';
 import PlayCircleRoundedIcon from '@mui/icons-material/PlayCircleRounded';
 import Slider from '@mui/material/Slider';
@@ -149,10 +150,13 @@ export default function Home() {
               <img src={BearHeart.src} alt="bear_heart" />
               <div>
                 <div>
-                  <h3>Send Your Heartbeat!</h3>
-                  <p>Comfort your baby</p>
+                  {isTransmitting ? (<h3>Sending Your Heartbeat!</h3>) : (<h3>Send Your Heartbeat!</h3>)}
+                  {isTransmitting ? (<p>Comforting your baby</p>) : (<p>Comfort your baby</p>)}
                 </div>
-                <FavoriteRoundedIcon className="heart-icon"/>
+                {isTransmitting ? 
+                  <StopCircleRoundedIcon className="stop-icon" onClick={handleTransmitHeartbeat}/> :
+                  <FavoriteRoundedIcon className="heart-icon" onClick={handleTransmitHeartbeat}/>
+                }
               </div>
             </div>
             <div className="playing-container">

@@ -122,8 +122,16 @@ nav > div {
     color: var(--secondary-background);
     cursor: pointer;
 }
-
 .heart-icon:hover {
+    color: var(--accent-background);
+}
+
+.stop-icon {
+    font-size: 32px;
+    color: var(--secondary-background);
+    cursor: pointer;
+}
+.stop-icon:hover {
     color: var(--accent-background);
 }
 
