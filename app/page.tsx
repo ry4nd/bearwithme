@@ -108,14 +108,20 @@ export default function Home() {
   };
 
   // heartbeat sensor
-  const heartbeatRef = ref(db, "/heartbeat_data/is_recording"); // note: change when database is updated
+  const isRecordingRef = ref(db, "/heartbeat_data/is_recording"); // note: change when database is updated
+  const isVibratingRef = ref(db, "/heartbeat_data/is_vibrating");
 
   const handleTransmitHeartbeat = () => {
-    set(heartbeatRef, !isTransmitting ? 1 : 0);
-    setIsTransmitting(!isTransmitting);
+    set(isRecordingRef, 1);
+    setIsTransmitting(true);
 
     console.log(`isTransmitting: ${isTransmitting}`);
   };
+
+  const handleStopVibration = () => {
+    set(isVibratingRef, 0);
+    setIsTransmitting(false);
+  }
   
   return (
     <div className="grid">
@@ -154,7 +160,7 @@ export default function Home() {
                   {isTransmitting ? (<p>Comforting your baby</p>) : (<p>Comfort your baby</p>)}
                 </div>
                 {isTransmitting ? 
-                  <StopCircleRoundedIcon className="stop-icon" onClick={handleTransmitHeartbeat}/> :
+                  <StopCircleRoundedIcon className="stop-icon" onClick={handleStopVibration}/> :
                   <FavoriteRoundedIcon className="heart-icon" onClick={handleTransmitHeartbeat}/>
                 }
               </div>
