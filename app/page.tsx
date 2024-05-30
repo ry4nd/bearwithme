@@ -31,7 +31,7 @@ type AudioRecording = {
 export default function Home() {
   // speaker
   const [audioRecordings, setAudioRecordings] = useState<AudioRecording[]>([]);
-  const [currentlyPlaying, setCurrentlyPlaying] = useState("");
+  const [currentlyPlaying, setCurrentlyPlaying] = useState("0");
   const [isPaused, setIsPaused] = useState(false);
   const [volume, setVolume] = useState(15);
   // sound sensor
@@ -168,7 +168,7 @@ export default function Home() {
             <div className="playing-container">
               {(currentlyPlaying) && <img src={BearSleeping.src} alt="bear_sleeping" />}
               <h3>
-                {currentlyPlaying ?
+                {currentlyPlaying !== "0" ?
                 (audioRecordings.map((audio: {filename: string, link: string}) => (
                   audio.link === currentlyPlaying ?
                   audio.filename :
