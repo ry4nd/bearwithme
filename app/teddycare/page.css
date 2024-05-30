@@ -1,0 +1,250 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+}
+
+.sidebar  {
+    grid-column: span 12;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    background-color: var(--tertiary-background);
+}
+
+#notifications {
+    margin-bottom: 16px;
+}
+
+#notifications h4 {
+    margin-bottom: 16px;
+}
+
+.notifications-container {
+    background-color: var(--accent);
+    border-radius: 24px;
+    padding: 16px;
+    color: var(--primary-background);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.notifications-container > img {
+    width: 33%;
+    object-fit: contain;
+}
+
+.notifications-container > div {
+    margin-left: 8px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-icon {
+    font-size: 32px;
+    color: var(--tertiary-background);
+    cursor: pointer;
+}
+
+#heartbeat > h4 {
+    margin-bottom: 16px;
+}
+
+.heartbeat-container {
+    background-color: var(--primary);
+    border-radius: 24px;
+    padding: 16px;
+    color: var(--primary-background);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.heartbeat-container > img {
+    width: 32%;
+    object-fit: contain;
+    margin-right: 8px;
+}
+
+.heartbeat-container > div {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.heart-icon {
+    font-size: 32px;
+    color: var(--tertiary-background);
+    cursor: pointer;
+}
+.heart-icon:hover {
+    color: var(--secondary-background);
+}
+
+.stop-icon {
+    font-size: 32px;
+    color: var(--tertiary-background);
+    cursor: pointer;
+}
+.stop-icon:hover {
+    color: var(--secondary-background);
+}
+
+main {
+    grid-column: span 12;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+#now-playing > h4 {
+    margin-bottom: 16px;
+}
+
+.playing-container {
+    background-color: var(--secondary);
+    border-radius: 24px;
+    padding: 16px;
+    color: var(--primary-background);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.playing-container > img {
+    width: 33%;
+    object-fit: contain;
+    margin-bottom: 8px;
+}
+
+.playing-container > div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.pause-icon {
+    font-size: 32px;
+    margin-right: 16px;
+    cursor: pointer;
+}
+.pause-icon:hover {
+    color: var(--tertiary-background);
+}
+
+.play-icon {
+    font-size: 32px;
+    margin-right: 16px;
+    cursor: pointer;
+}
+.play-icon:hover {
+    color: var(--secondary-background);
+}
+
+.slider {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.volumedown-icon {
+    margin-right: 16px;
+    font-size: 32px;
+}
+
+.volumeup-icon {
+    margin-left: 16px;
+    font-size: 32px;
+}
+
+#sounds > h4 {
+    margin-bottom: 16px;
+}
+
+.audio-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    align-items: center;
+}
+
+.playing-icon {
+    font-size: 32px;
+    color: var(--secondary);
+}
+
+.audio-play-icon {
+    font-size: 32px;
+    cursor: pointer;
+}
+.audio-play-icon:hover {
+    color: var(--secondary);
+}
+
+@media (min-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+
+    .sidebar {
+        padding: 16px 64px;
+    }
+
+    main {
+        padding: 16px 64px;
+    }
+
+    .notifications-container > div {
+        margin-left: 16px;
+    }
+
+    .heartbeat-container > img {
+        margin-right: 16px;
+    }
+}
+
+@media (min-width: 1024px) {
+    body {
+        font-size: 18px;
+    }
+
+    .grid {
+        height: 100vh;
+    }
+
+    .sidebar {
+        grid-column: span 5;
+        padding: 32px;
+    }
+
+    main {
+        grid-column: span 7;
+        padding: 32px;
+    }
+
+    .playing-container {
+        flex-direction: row;
+    }
+
+    .playing-container > img {
+        width: 20%;
+    }
+
+    .slider-container {
+        margin-top: 8px;
+        width: 75%;
+    }
+}

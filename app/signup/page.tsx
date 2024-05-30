@@ -7,7 +7,7 @@ import { set, ref } from "firebase/database";
 
 import './page.css';
 
-const SignUp = () => {
+export default function SignUp() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState(''); 
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -55,5 +55,3 @@ const SignUp = () => {
         </div>
     );
 };
-
-export default SignUp;
