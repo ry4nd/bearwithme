@@ -6,6 +6,7 @@ import { db } from "../firebase";
 import { set, ref } from "firebase/database";
 
 import './page.css';
+import logo from '../assets/logo-lilac.png';
 
 export default function SignUp() {
     const [email, setEmail] = useState('');
@@ -43,15 +44,42 @@ export default function SignUp() {
     };
 
     return (
-        <div className="signup-container">
-            <h2>Sign Up</h2>
-            <form onSubmit={handleSignUp}>
-                <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-                <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-                <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
-                {error && <p>{error}</p>}
-                <button type="submit">Sign Up</button>
-            </form>
-        </div>
+        <main className='grid'>
+            <section id='signup'>
+                <div className='signup-background'>
+                    <div>
+                        <img src={logo.src} alt="logo" />
+                        <p>BearWithMe</p>
+                    </div>
+                    <h2>Sign Up</h2>
+                    <form>
+                        <div className='name-container'>
+                            <div>
+                                <label>First Name</label>
+                                <input type='text' placeholder='First Name'/>
+                            </div>
+                            <div>
+                                <label>Last Name</label>
+                                <input type='text' placeholder='Last Name'/> 
+                            </div>
+                        </div>
+                        <label>Address</label>
+                        <input type='text' placeholder='Address'/>
+                        <label>Contact Number</label>
+                        <input type='text' placeholder='Contact Number'/>
+                        <label>Email</label>
+                        <input type='text' placeholder='Email'/>
+                        <label>Password</label>
+                        <input type='text' placeholder='Password'/>
+                        <label>Confirm Password</label>
+                        <input type='text' placeholder='Confirm Password'/>
+                        {error && <label>{error}</label>}
+                        <div>
+                            <button>Create Account</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </main>
     );
 };

@@ -1,35 +1,113 @@
-.signup-container {
-    width: 300px;
-    margin: 0 auto;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
 }
 
-.signup-container h2 {
-    text-align: center;
+#signup {
+    grid-column: span 12;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.signup-container form {
+.signup-background {
+    background-color: var(--tertiary-background);
+    padding: 32px;
+    margin: 32px;
+    border-radius: 24px;
+}
+
+.signup-background img {
+    height: 24px;
+    margin-right: 8px;
+}
+
+.signup-background > div {
+    display: flex;
+    align-items: center;
+}
+
+.signup-background > h2 {
+    margin-bottom: 8px;
+}
+
+.name-container {
     display: flex;
     flex-direction: column;
 }
 
-.signup-container form input {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+.name-container > div{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
-.signup-container form button {
-    padding: 10px;
-    background-color: #007BFF;
-    color: white;
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    margin-bottom: 8px;
+    padding: 8px;
+    border-radius: 8px;
+    border: 2px solid var(--foreground);
+}
+input:focus {
+    outline: none;
+    border-color: var(--secondary);
+}
+
+label {
+    margin-bottom: 4px;
+}
+
+form > :last-child {
+    align-self: center;
+}
+
+button {
+    padding: 8px 16px;
+    border-radius: 8px;
     border: none;
-    border-radius: 5px;
+    background-color: var(--secondary);
     cursor: pointer;
+    margin-top: 4px;
+    align-self: center;
 }
 
-.signup-container form button:hover {
-    background-color: #0056b3;
+@media (min-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+
+    #signup {
+        grid-column: 3/11;
+    }
+
+    .signup-background > h2 {
+        margin-bottom: 16px;
+    }
+
+    .name-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 16px;
+    }
+
+    input {
+        margin-bottom: 16px;
+    }
+}
+
+@media (min-width: 1024px) {
+    body {
+        font-size: 18px;
+    }
+
+    #signup {
+        grid-column: 5/9;
+    }
 }
