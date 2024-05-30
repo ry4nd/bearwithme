@@ -176,7 +176,7 @@ export default function TeddyCare() {
                       </div>) : (
                       <div>
                         <h6>Recording Your Heartbeat</h6>
-                        <p>Don't remove your bracelet</p>
+                        <p>Don&apos;t remove your bracelet</p>
                       </div>))
                   }
                 </div>
