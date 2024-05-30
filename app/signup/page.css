@@ -37,10 +37,11 @@
     flex-direction: column;
 }
 
-.name-container > div{
+.name-container > div {
     display: flex;
     flex-direction: column;
     width: 100%;
+    overflow: hidden;
 }
 
 form {
@@ -82,8 +83,12 @@ button {
         font-size: 16px;
     }
 
+    .signup-background {
+        margin: 0;
+    }
+
     #signup {
-        grid-column: 3/11;
+        grid-column: 4/10;
     }
 
     .signup-background > h2 {
@@ -108,7 +113,7 @@ button {
     }
 
     #signup {
-        grid-column: 4/10;
+        grid-column: 5/9;
     }
 
     .name-container {
