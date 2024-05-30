@@ -6,7 +6,9 @@ import { db } from "../firebase";
 import { set, ref } from "firebase/database";
 import { useLocation } from 'wouter';
 import { useRouter } from 'next/router';
+
 import './page.css';
+import logo from '../assets/logo-lilac.png';
 
 
 export default function Login() {
@@ -39,14 +41,26 @@ export default function Login() {
     };
         
     return (
-        <div className="login-container">
-            <h2>Login</h2>
-            <form onSubmit={handleLogin}>
-                <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-                <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-                {error && <p>{error}</p>}
-                <button type="submit">Login</button>
-            </form>
-        </div>
+        <main className='grid'>
+            <section id='login'>
+                <div className='login-background'>
+                    <div>
+                        <img src={logo.src} alt="logo" />
+                        <p>BearWithMe</p>
+                    </div>
+                    <h2>Login</h2>
+                    <form>
+                        <label>Email</label>
+                        <input type='text' placeholder='Email'/>
+                        <label>Password</label>
+                        <input type='text' placeholder='Password'/>
+                        {error && <label>{error}</label>}
+                        <div>
+                            <button>Login</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </main>
     );
 };
