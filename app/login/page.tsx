@@ -44,20 +44,14 @@ export default function Login() {
         <main className='grid'>
             <section id='login'>
                 <div className='login-background'>
-                    <div>
-                        <img src={logo.src} alt="logo" />
-                        <p>BearWithMe</p>
-                    </div>
-                    <h2>Login</h2>
+                    <h3>Login</h3>
                     <form>
                         <label>Email</label>
                         <input type='text' placeholder='Email'/>
                         <label>Password</label>
                         <input type='text' placeholder='Password'/>
                         {error && <label>{error}</label>}
-                        <div>
-                            <button>Login</button>
-                        </div>
+                        <button>Login</button>
                     </form>
                 </div>
             </section>

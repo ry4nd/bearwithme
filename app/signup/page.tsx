@@ -47,11 +47,7 @@ export default function SignUp() {
         <main className='grid'>
             <section id='signup'>
                 <div className='signup-background'>
-                    <div>
-                        <img src={logo.src} alt="logo" />
-                        <p>BearWithMe</p>
-                    </div>
-                    <h2>Sign Up</h2>
+                    <h3>Sign Up</h3>
                     <form>
                         <div className='name-container'>
                             <div>
@@ -74,9 +70,7 @@ export default function SignUp() {
                         <label>Confirm Password</label>
                         <input type='text' placeholder='Confirm Password'/>
                         {error && <label>{error}</label>}
-                        <div>
-                            <button>Create Account</button>
-                        </div>
+                        <button>Create Account</button>
                     </form>
                 </div>
             </section>
