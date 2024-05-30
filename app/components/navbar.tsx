@@ -12,24 +12,24 @@ export default function Navbar({isAuthenticated}: NavbarProps) {
         <nav>
             <Link href='/' className='logo-container'>
                 <Image src={logo} alt='logo' width={27} height={32} />
-                <h6>BearWithMe</h6  >
+                <p>BearWithMe</p  >
             </Link>
             {!isAuthenticated && 
                 <div className='section-container'>
                     <Link href='#shop'>
-                        <h6>Shop</h6>
+                        <p>Shop</p>
                     </Link>
                     <Link href='#contact'>
-                        <h6>Contact</h6>
+                        <p>Contact</p>
                     </Link>
                     <Link href='#about'>
-                        <h6>About</h6>
+                        <p>About</p>
                     </Link>
                 </div>
             }
             {isAuthenticated && 
                 <div className='logout-container'>
-                    <h6>Logout</h6>
+                    <p>Logout</p>
                 </div>
             }
         </nav>

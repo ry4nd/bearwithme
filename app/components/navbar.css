@@ -15,11 +15,12 @@ nav {
     text-decoration: none;
 }
 
-.logo-container h6 {
+.logo-container p {
     color: var(--foreground);
     margin-left: 16px;
+    font-weight: bold;
 }
-.logo-container h6:hover {
+.logo-container p:hover {
     color: var(--secondary);
 }
 
@@ -48,6 +49,10 @@ nav {
 }
 
 @media (min-width: 1024px) {
+    body {
+        font-size: 18px;
+    }
+
     nav {
         padding: 16px 32px;
     }
