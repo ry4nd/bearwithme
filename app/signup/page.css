@@ -108,6 +108,13 @@ button {
     }
 
     #signup {
-        grid-column: 5/9;
+        grid-column: 4/10;
+    }
+
+    .name-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 32px;
     }
 }
