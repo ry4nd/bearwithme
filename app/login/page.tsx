@@ -66,7 +66,7 @@ export default function Login() {
                             onChange = {(event) => setPassword(event.target.value)}
                             required
                         />
-                        {error && <label>{error}</label>}
+                        {error && <label className='error'>{error}</label>}
                         <button type="submit">Login</button>
                     </form>
                     <div>
