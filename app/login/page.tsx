@@ -34,25 +34,20 @@ export default function Login() {
     const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        try {
-            const userCredential = await signInWithEmailAndPassword(auth, email, password);
-            console.log('User logged in:', userCredential.user.uid);
-            router.push('/teddycare');
-        }
-        catch(error : any){
-            console.log(error.code);
-            if (error.code === 'auth/invalid-credential') {
-                setError('User not found');
-            }
-            else if (error.code === 'auth/wrong-password') {
-                setError('Wrong password');
-            }
-            else {
-                setError('An error occurred');
-            }
-        }
-    };
-        
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                console.log('User logged in:', userCredential.user.uid);
+                router.push('/teddycare');
+            })
+            .catch((error) => {
+                console.log(error.code);
+                if (error.code === 'auth/invalid-email') {
+                    setError('Invalid email');
+                } else if (error.code === 'auth/invalid-credential') {
+                    setError('User not found/Password is incorrect')
+                }
+            });
+    };   
     return (
         <main className='grid'>
             <section id='login'>
