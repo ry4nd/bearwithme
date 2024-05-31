@@ -2,6 +2,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import logo from '../assets/logo-lilac.png';
 import './navbar.css';
+import { auth } from '../firebase';
+import { signOut } from 'firebase/auth';
+import { useRouter } from 'next/navigation';
 
 type NavbarProps = {
     isAuthenticated: boolean;
@@ -9,6 +12,17 @@ type NavbarProps = {
 }
 
 export default function Navbar({isAuthenticated, inTeddyCare}: NavbarProps) {
+    const router = useRouter();
+
+    const handleLogout = () => {
+        signOut(auth).then(() => {
+            console.log('User signed out');
+            router.push('/');
+        }).catch((error) => {
+            console.log('An error occurred', error.code);
+        });
+    }
+
     return (
         <nav>
             <Link href='/' className='logo-container'>
@@ -17,7 +31,7 @@ export default function Navbar({isAuthenticated, inTeddyCare}: NavbarProps) {
             </Link>
             {(isAuthenticated && inTeddyCare) &&
                 <div className='logout-container'>
-                    <p>Logout</p>
+                    <p onClick={handleLogout}>Logout</p>
                 </div>
             }
             {(isAuthenticated && !inTeddyCare) &&
