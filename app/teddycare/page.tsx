@@ -2,6 +2,7 @@
 import { db } from "../firebase";
 import { set, ref, onValue } from "firebase/database";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 // frontend
 import './page.css';
@@ -45,6 +46,7 @@ export default function TeddyCare() {
   // authentication check
   const [userLogged, setUserLogged] = useState(false);
   
+  const router = useRouter();
   
   useEffect(() => {
     //speaker
@@ -86,10 +88,13 @@ export default function TeddyCare() {
 
     onAuthStateChanged(auth, (user) => {
       if (user) {
+        console.log('User logged in:', user.uid);
         setUserLogged(true);
       } 
       else {
+        console.log('User not logged in');
         setUserLogged(false);
+        router.push('/login');
       }
     });
 
