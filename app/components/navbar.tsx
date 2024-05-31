@@ -47,7 +47,7 @@ export default function Navbar({isAuthenticated, inTeddyCare}: NavbarProps) {
                     <Link href='#about'>
                         <p>About</p>
                     </Link>
-                    <Link href='#about'>
+                    <Link href='/login'>
                         <p>Login</p>
                     </Link>
                 </div>

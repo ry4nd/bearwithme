@@ -24,7 +24,8 @@ import VolumeDown from '@mui/icons-material/VolumeDown';
 import VolumeUp from '@mui/icons-material/VolumeUp';
 import GraphicEqRoundedIcon from '@mui/icons-material/GraphicEqRounded';
 import { on } from "events";
-
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import {auth} from '../firebase'
 type AudioRecording = {
   filename: string;
   link: string;
@@ -41,6 +42,8 @@ export default function TeddyCare() {
   // heartbeat sensor
   const [isRecording, setIsRecording] = useState(false);
   const [isVibrating, setIsVibrating] = useState(false);
+  // authentication check
+  const [userLogged, setUserLogged] = useState(false);
   
   
   useEffect(() => {
@@ -80,6 +83,17 @@ export default function TeddyCare() {
 
       console.log(`isVibrating: ${data}`);
     });
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUserLogged(true);
+      } 
+      else {
+        setUserLogged(false);
+      }
+    });
+
+
   }, []);
 
   // speaker
@@ -140,7 +154,7 @@ export default function TeddyCare() {
   
   return (
     <div>
-      <Navbar isAuthenticated={true} inTeddyCare={true} />
+      <Navbar isAuthenticated={userLogged} inTeddyCare={true} />
       <div className="grid">
         <div className='sidebar'>
           {(isCrying ? true : false) &&
