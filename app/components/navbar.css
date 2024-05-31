@@ -17,7 +17,7 @@ nav {
 
 .logo-container p {
     color: var(--foreground);
-    margin-left: 16px;
+    margin-left: 8px;
     font-weight: bold;
 }
 .logo-container p:hover {
@@ -28,7 +28,7 @@ nav {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 16px;
+    gap: 8px;
 }
 
 .section-container * {
@@ -55,5 +55,13 @@ nav {
 
     nav {
         padding: 16px 32px;
+    }
+
+    .logo-container p {
+        margin-left: 16px;
+    }
+
+    .section-container {
+        gap: 16px;
     }
 }
