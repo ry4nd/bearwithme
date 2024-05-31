@@ -156,17 +156,14 @@ export default function TeddyCare() {
 
   const handleStopVibration = () => {
     set(isVibratingRef, 0);
+    set(playDefaultRef, 0);
     setIsVibrating(false);
+    setPlayDefault(false);
   }
 
   const handlePlayDefault = () => {
     set(playDefaultRef, 1);
     setPlayDefault(true);
-  }
-
-  const handleStopDefault = () => {
-    set(playDefaultRef, 0);
-    setPlayDefault(false);
   }
   
   return (
@@ -197,13 +194,13 @@ export default function TeddyCare() {
                 <div>
                   {isVibrating ? (
                     <div>
-                      <h6>Sending Your Heartbeat</h6>
+                      <h6>Sending Heartbeat</h6>
                       <p>Comforting your Baby</p>
                     </div>) : (
                     !isRecording ? (
                       <div>
                         <h6>Record Your Heartbeat</h6>
-                        <p>Wear your BearWithMe bracelet</p>
+                        <p>Wear your TeddyCare bracelet</p>
                       </div>) : (
                       <div>
                         <h6>Recording Your Heartbeat</h6>
@@ -217,10 +214,7 @@ export default function TeddyCare() {
             </div>
             <div>
               <p>Play Heartbeat</p>
-              {playDefault ?
-                <StopCircleRoundedIcon className="default-icon" onClick={handleStopDefault}/> :
-                <FavoriteRoundedIcon className="default-icon" onClick={handlePlayDefault}/>
-              }
+              {!playDefault && <FavoriteRoundedIcon className="default-icon" onClick={handlePlayDefault}/>}
             </div>
           </section>
         </div>
