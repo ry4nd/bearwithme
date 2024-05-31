@@ -52,23 +52,23 @@ export default function SignUp() {
                         <div className='name-container'>
                             <div>
                                 <label>First Name</label>
-                                <input type='text' placeholder='First Name'/>
+                                <input type='text' placeholder='First Name' required/>
                             </div>
                             <div>
                                 <label>Last Name</label>
-                                <input type='text' placeholder='Last Name'/> 
+                                <input type='text' placeholder='Last Name' required/> 
                             </div>
                         </div>
                         <label>Address</label>
-                        <input type='text' placeholder='Address'/>
+                        <input type='text' placeholder='Address' required/>
                         <label>Contact Number</label>
-                        <input type='text' placeholder='Contact Number'/>
+                        <input type='text' placeholder='Contact Number' required/>
                         <label>Email</label>
-                        <input type='text' placeholder='Email'/>
+                        <input type='email' placeholder='Email' required/>
                         <label>Password</label>
-                        <input type='text' placeholder='Password'/>
+                        <input type='password' placeholder='Password' required/>
                         <label>Confirm Password</label>
-                        <input type='text' placeholder='Confirm Password'/>
+                        <input type='password' placeholder='Confirm Password' required/>
                         {error && <label>{error}</label>}
                         <button>Create Account</button>
                     </form>
