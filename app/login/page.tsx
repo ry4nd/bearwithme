@@ -5,7 +5,7 @@ import { getAuth, connectAuthEmulator, signInWithEmailAndPassword } from 'fireba
 import { db } from "../firebase";
 import { set, ref } from "firebase/database";
 import { useLocation } from 'wouter';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 import './page.css';
 import logo from '../assets/logo-lilac.png';
@@ -16,7 +16,7 @@ export default function Login() {
     const [password, setPassword] = useState(''); 
     const [error, setError] = useState('');
     // const [location, setLocation] = useLocation();
-    // const router = useRouter();
+    const router = useRouter();
 
     const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -24,7 +24,7 @@ export default function Login() {
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             console.log('User logged in:', userCredential.user.uid);
-            // router.push('/');
+            router.push('/teddycare');
         }
         catch(error : any){
             console.log(error.code);
