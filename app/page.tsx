@@ -32,14 +32,20 @@ export default function Home() {
       <Navbar isAuthenticated={userLogged} inTeddyCare={false} />
       <main>
         <section id='storytelling'>
-          <img src={Storytelling.src} alt="storytelling-section" />
-          <img src={Features.src} alt="features" />
+          <div style={{backgroundColor: 'var(--foreground)'}}>
+            <img src={Storytelling.src} alt="storytelling-section" />
+            <img src={Features.src} alt="features" />
+          </div>
         </section>
         <section id='shop'>
-          <img src={Shop.src} alt="shop-section" />
+          <div style={{backgroundColor: 'var(--foreground)'}}>
+            <img src={Shop.src} alt="shop-section" />
+          </div>
         </section>
         <section id='contact'>
-          <img src={Contact.src} alt="contact-section" />
+          <div style={{backgroundColor: 'var(--foreground)'}}>
+            <img src={Contact.src} alt="contact-section" />
+          </div>
         </section>
         <section id='about'>
         </section>
