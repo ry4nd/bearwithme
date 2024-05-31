@@ -2,7 +2,7 @@
 import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation'
 import { auth } from '../firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signOut } from 'firebase/auth';
 import { db } from "../firebase";
 import { set, ref } from "firebase/database";
 
@@ -38,6 +38,13 @@ export default function SignUp() {
                         contactNumber: contactNumber,
                         email: email,
                     });
+                    signOut(auth)
+                        .then(() => {
+                            console.log('User signed out');
+                      })
+                      .catch((error) => {
+                            console.log('An error occurred while signing out:', error);
+                      });
                     router.push('/login');
                 })
                 .catch((error) => {
