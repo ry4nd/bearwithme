@@ -7,10 +7,29 @@ import XIcon from '@mui/icons-material/X';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
-export default function Home() { 
+import { useEffect, useState } from 'react';
+
+// authentication
+import { auth } from './firebase';
+import { onAuthStateChanged } from 'firebase/auth';
+
+export default function Home() {
+  const [userLogged, setUserLogged] = useState(false);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            setUserLogged(true);
+        } 
+        else {
+            setUserLogged(false);
+        }
+        });
+  });
+  
   return (
     <div>
-      <Navbar isAuthenticated={true} inTeddyCare={false} />
+      <Navbar isAuthenticated={userLogged} inTeddyCare={false} />
       <main>
         <section id='storytelling'>
           <h1>Storytelling</h1>
