@@ -140,7 +140,7 @@ export default function TeddyCare() {
   
   return (
     <div>
-      <Navbar isAuthenticated={true} />
+      <Navbar isAuthenticated={true} inTeddyCare={true} />
       <div className="grid">
         <div className='sidebar'>
           {(isCrying ? true : false) &&
