@@ -24,6 +24,7 @@ export default function Login() {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUserLogged(true);
+                router.push('/teddycare');
             } 
             else {
                 setUserLogged(false);
