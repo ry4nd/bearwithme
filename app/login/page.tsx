@@ -45,11 +45,23 @@ export default function Login() {
             <section id='login'>
                 <div className='login-background'>
                     <h3>Login</h3>
-                    <form>
+                    <form onSubmit={handleLogin}>
                         <label>Email</label>
-                        <input type='text' placeholder='Email'/>
+                        <input 
+                            type='text' 
+                            placeholder='Email'
+                            value={email}
+                            onChange = {(event) => setEmail(event.target.value)}
+                            required
+                        />
                         <label>Password</label>
-                        <input type='text' placeholder='Password'/>
+                        <input 
+                            type='password' 
+                            placeholder='Password'
+                            value={password}
+                            onChange = {(event) => setPassword(event.target.value)}
+                            required
+                        />
                         {error && <label>{error}</label>}
                         <button>Login</button>
                     </form>
