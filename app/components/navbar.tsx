@@ -22,7 +22,7 @@ export default function Navbar({isAuthenticated, inTeddyCare}: NavbarProps) {
             }
             {(isAuthenticated && !inTeddyCare) &&
                 <div className='section-container'>
-                    <Link href='#shop'>
+                    <Link href='/teddycare'>
                         <p>TeddyCare</p>
                     </Link>
                     <Link href='#shop'>
