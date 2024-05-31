@@ -1,5 +1,6 @@
 'use client'
 import { useState, FormEvent } from 'react';
+import { useRouter } from 'next/navigation'
 import { auth } from '../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { db } from "../firebase";
@@ -9,6 +10,7 @@ import './page.css';
 import logo from '../assets/logo-lilac.png';
 
 export default function SignUp() {
+    const router = useRouter();
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [address, setAddress] = useState('');
@@ -36,6 +38,7 @@ export default function SignUp() {
                         contactNumber: contactNumber,
                         email: email,
                     });
+                    router.push('/login');
                 })
                 .catch((error) => {
                     if (error.code === 'auth/email-already-in-use') {
