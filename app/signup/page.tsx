@@ -1,8 +1,8 @@
 'use client'
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, useEffect } from 'react';
 import { useRouter } from 'next/navigation'
 import { auth } from '../firebase';
-import { createUserWithEmailAndPassword, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
 import { db } from "../firebase";
 import { set, ref } from "firebase/database";
 
@@ -20,6 +20,15 @@ export default function SignUp() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
 
+    // Redirect if accessing while already authenticated
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                router.push('/teddycare');
+            }
+        });
+    });
+    
     const handleSignUp = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (password !== confirmPassword) {
