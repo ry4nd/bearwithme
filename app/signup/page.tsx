@@ -9,6 +9,10 @@ import './page.css';
 import logo from '../assets/logo-lilac.png';
 
 export default function SignUp() {
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [address, setAddress] = useState('');
+    const [contactNumber, setContactNumber] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState(''); 
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -48,11 +52,15 @@ export default function SignUp() {
             <section id='signup'>
                 <div className='signup-background'>
                     <h3>Sign Up</h3>
-                    <form>
+                    <form onSubmit={handleSignUp}>
                         <div className='name-container'>
                             <div>
                                 <label>First Name</label>
-                                <input type='text' placeholder='First Name' required/>
+                                <input 
+                                type='text' 
+                                placeholder='First Name'
+                                value={firstName}
+                                required/>
                             </div>
                             <div>
                                 <label>Last Name</label>
