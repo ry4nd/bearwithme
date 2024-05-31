@@ -93,6 +93,28 @@
     color: var(--secondary-background);
 }
 
+#heartbeat > :last-child {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 16px 0 16px;
+    align-items: center;
+}
+
+.play-default-icon {
+    font-size: 32px;
+    color: var(--foreground);
+    cursor: pointer;
+}
+.default-icon:hover {
+    color: var(--primary);
+}
+
+.default-icon {
+    font-size: 32px;
+    color: var(--foreground);
+    cursor: pointer;
+}
+
 main {
     grid-column: span 12;
     padding: 16px;

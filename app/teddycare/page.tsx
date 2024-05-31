@@ -43,6 +43,7 @@ export default function TeddyCare() {
   // heartbeat sensor
   const [isRecording, setIsRecording] = useState(false);
   const [isVibrating, setIsVibrating] = useState(false);
+  const [playDefault, setPlayDefault] = useState(false);
   // authentication check
   const [userLogged, setUserLogged] = useState(false);
   
@@ -144,6 +145,7 @@ export default function TeddyCare() {
   // heartbeat sensor
   const isRecordingRef = ref(db, "/heartbeat_data/is_recording"); // note: change when database is updated
   const isVibratingRef = ref(db, "/heartbeat_data/is_vibrating");
+  const playDefaultRef = ref(db, "/heartbeat_data/play_default");
 
   const handleTransmitHeartbeat = () => {
     set(isRecordingRef, 1);
@@ -155,6 +157,16 @@ export default function TeddyCare() {
   const handleStopVibration = () => {
     set(isVibratingRef, 0);
     setIsVibrating(false);
+  }
+
+  const handlePlayDefault = () => {
+    set(playDefaultRef, 1);
+    setPlayDefault(true);
+  }
+
+  const handleStopDefault = () => {
+    set(playDefaultRef, 0);
+    setPlayDefault(false);
   }
   
   return (
@@ -185,7 +197,7 @@ export default function TeddyCare() {
                 <div>
                   {isVibrating ? (
                     <div>
-                      <h6>Sending Your Hearbeat</h6>
+                      <h6>Sending Your Heartbeat</h6>
                       <p>Comforting your Baby</p>
                     </div>) : (
                     !isRecording ? (
@@ -202,6 +214,13 @@ export default function TeddyCare() {
                 {isVibrating && <StopCircleRoundedIcon className="stop-icon" onClick={handleStopVibration}/>}
                 {!isRecording && !isVibrating && <FavoriteRoundedIcon className="heart-icon" onClick={handleTransmitHeartbeat}/>}
               </div>
+            </div>
+            <div>
+              <p>Play Heartbeat</p>
+              {playDefault ?
+                <StopCircleRoundedIcon className="default-icon" onClick={handleStopDefault}/> :
+                <FavoriteRoundedIcon className="default-icon" onClick={handlePlayDefault}/>
+              }
             </div>
           </section>
         </div>
