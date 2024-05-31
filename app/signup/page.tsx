@@ -29,10 +29,12 @@ export default function SignUp() {
                 .then((userCredential) => {
                     const user = userCredential.user;
                     console.log('User created:', user.uid);
-                    set(ref(db, user.uid), {
-                        email: "",
-                        firstName: "",
-                        lastName: "",
+                    set(ref(db, 'users/' + user.uid), {
+                        firstName: firstName,
+                        lastName: lastName,
+                        address: address,
+                        contactNumber: contactNumber,
+                        email: email,
                     });
                 })
                 .catch((error) => {
@@ -57,28 +59,66 @@ export default function SignUp() {
                             <div>
                                 <label>First Name</label>
                                 <input 
-                                type='text' 
-                                placeholder='First Name'
-                                value={firstName}
-                                required/>
+                                    type='text' 
+                                    placeholder='First Name'
+                                    value={firstName}
+                                    onChange={(event) => setFirstName(event.target.value)}
+                                    required
+                                />
                             </div>
                             <div>
                                 <label>Last Name</label>
-                                <input type='text' placeholder='Last Name' required/> 
+                                <input 
+                                    type='text' 
+                                    placeholder='Last Name' 
+                                    value={lastName}
+                                    onChange={(event) => setLastName(event.target.value)}
+                                    required
+                                /> 
                             </div>
                         </div>
                         <label>Address</label>
-                        <input type='text' placeholder='Address' required/>
+                        <input 
+                            type='text' 
+                            placeholder='Address' 
+                            value={address}
+                            onChange={(event) => setAddress(event.target.value)}
+                            required
+                        />
                         <label>Contact Number</label>
-                        <input type='text' placeholder='Contact Number' required/>
+                        <input 
+                            type='text' 
+                            placeholder='Contact Number'
+                            value={contactNumber}
+                            onChange={(event) => setContactNumber(event.target.value)} 
+                            required
+                        />
                         <label>Email</label>
-                        <input type='email' placeholder='Email' required/>
+                        <input 
+                            type='email' 
+                            placeholder='Email'
+                            value={email}
+                            onChange={(event) => setEmail(event.target.value)}
+                            required
+                        />
                         <label>Password</label>
-                        <input type='password' placeholder='Password' required/>
+                        <input 
+                            type='password' 
+                            placeholder='Password'
+                            value={password}
+                            onChange={(event) => setPassword(event.target.value)}
+                            required
+                        />
                         <label>Confirm Password</label>
-                        <input type='password' placeholder='Confirm Password' required/>
+                        <input 
+                            type='password' 
+                            placeholder='Confirm Password' 
+                            value={confirmPassword}
+                            onChange={(event) => setConfirmPassword(event.target.value)}
+                            required
+                        />
                         {error && <label>{error}</label>}
-                        <button>Create Account</button>
+                        <button type="submit">Create Account</button>
                     </form>
                 </div>
             </section>
