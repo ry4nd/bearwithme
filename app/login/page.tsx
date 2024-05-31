@@ -1,7 +1,7 @@
 'use client'
-import { useState, FormEvent } from 'react';
+import { useState, useEffect, FormEvent } from 'react';
 import { auth } from '../firebase';
-import { getAuth, connectAuthEmulator, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, connectAuthEmulator, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
 import { db } from "../firebase";
 import { set, ref } from "firebase/database";
 import { useLocation } from 'wouter';
@@ -12,11 +12,24 @@ import logo from '../assets/logo-lilac.png';
 
 
 export default function Login() {
+    const router = useRouter();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState(''); 
     const [error, setError] = useState('');
     // const [location, setLocation] = useLocation();
-    const router = useRouter();
+    const [userLogged, setUserLogged] = useState(false);
+
+    // Check if user is currently logged in; if so, redirect to /teddycare if they're trying to access the login page
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setUserLogged(true);
+            } 
+            else {
+                setUserLogged(false);
+            }
+            });
+    });
 
     const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -63,7 +76,7 @@ export default function Login() {
                             required
                         />
                         {error && <label>{error}</label>}
-                        <button>Login</button>
+                        <button type="submit">Login</button>
                     </form>
                 </div>
             </section>
