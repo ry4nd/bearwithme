@@ -60,13 +60,16 @@ label {
     margin-bottom: 4px;
 }
 
+.error {
+    margin-bottom: 8px;
+}
+
 button {
     background-color: var(--secondary-background);
     padding: 8px 16px;
     border-radius: 8px;
     border: none;
     cursor: pointer;
-    margin-top: 4px;
     color: var(--foreground);
     margin-bottom: 8px;
 }
@@ -109,8 +112,8 @@ button:hover {
         margin-bottom: 16px;
     }
 
-    button {
-        margin-top: 12px;
+    .error {
+        margin-bottom: 16px;
     }
 }
 
