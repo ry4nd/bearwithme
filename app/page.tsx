@@ -54,13 +54,13 @@ export default function Home() {
           <div style={{ backgroundColor: "var(--foreground)" }}>
             <div className="flex flex-col text-center bg-white items-center py-[50px] gap-10 w-full">
               <Image
-                className="w-1/6"
+                className="w-1/2 sm:w-1/6"
                 src="/bear-white.png"
                 alt="teddy"
                 width={400}
                 height={400}
               />
-              <div className="flex flex-col gap-3 justify-center items-center">
+              <div className="flex flex-col gap-3 justify-center items-center px-10">
                 <p className="text-4xl tracking-tight">
                   Hello, I am <span className="font-bold">TeddyCare</span>!
                 </p>
@@ -76,16 +76,17 @@ export default function Home() {
         <section className="flex justify-center items-center flex-col bg-purple py-[60px]">
           <div style={{ backgroundColor: "var(--foreground)" }}>
             <div className="flex flex-col text-center bg-purple items-center py-[50px] gap-10 w-full">
-              <div className="flex flex-row justify-evenly items-center">
+              <div className="flex flex-row gap-10 sm:gap-20 justify-center items-center">
                 <Image
-                  className="w-1/6"
+                  className="w-1/6 sm:w-1/12"
                   src="/bracelet.png"
                   alt="racelet"
                   width={400}
                   height={400}
                 />
+                <p className="uppercase text-sm font-bold">← Internet →</p>
                 <Image
-                  className="w-1/6"
+                  className="w-1/6 sm:w-1/12"
                   src="/bear-white.png"
                   alt="teddy"
                   width={400}
@@ -93,13 +94,14 @@ export default function Home() {
                 />
               </div>
               <div className="flex flex-col gap-3 justify-center items-center">
-                <p className="text-4xl tracking-tight">
+                <p className="text-2xl tracking-tight">
                   Busy working, or staying away from home for a while?
                 </p>
-                <p className="text-xl text-slate-800 w-3/4 leading-snug">
-                  A smart cuddly toy that bridges the gap between parents and
-                  children, fostering heartfelt connections from anywhere to
-                  your home!
+                <p className="text-md text-slate-700 w-1/2 leading-snug">
+                  Communicate with your child using a heartbeat bracelet that
+                  collects your heartbeat and sends it to TeddyCare, your
+                  child's cuddly companion! Ensure that your child feels at ease
+                  and at home, even when you are far away.
                 </p>
               </div>
             </div>
@@ -108,7 +110,7 @@ export default function Home() {
         <section className="flex justify-center items-center flex-col bg-blue py-[60px]">
           <div style={{ backgroundColor: "var(--foreground)" }}>
             <div className="flex flex-col text-center bg-blue items-center py-[50px] gap-10 w-full">
-              <p className="text-4xl tracking-tight">
+              <p className="text-4xl tracking-tight px-10">
                 Your Trusted Parenting Companion
               </p>
               <div className="container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 w-5/6 ">
@@ -152,10 +154,10 @@ export default function Home() {
           <div style={{ backgroundColor: "var(--foreground)" }}>
             <div className="flex flex-col text-center bg-white items-center py-[50px] gap-10 w-full">
               <div className="flex flex-col gap-2">
-                <p className="text-4xl tracking-tight">
+                <p className="text-4xl tracking-tight px-10">
                   Meet your child's new TeddyCare!
                 </p>
-                <p className="text-slate-600">
+                <p className="text-slate-600 px-10">
                   All products come with a free account on the web app,
                   BearWithMe, for remote interactions!
                 </p>
@@ -305,7 +307,7 @@ export default function Home() {
           id="contact"
           className="flex justify-center items-center flex-col bg-white pb-[70px]"
         >
-          <div className="flex flex-col text-center bg-dark-blue items-center py-[80px] gap-10 rounded-3xl w-7/12">
+          <div className="flex flex-col text-center bg-dark-blue items-center py-[80px] px-10 gap-10 rounded-3xl w-11/12 sm:w-7/12 ">
             <div className="flex flex-col gap-2">
               <p className="text-4xl tracking-tight text-white">
                 Our team is fully committed to you and your baby’s care
@@ -315,7 +317,7 @@ export default function Home() {
                 TeddyCare and BearWithMe.
               </p>
             </div>
-            <div className="flex flex-row gap-10 w-9/12">
+            <div className="flex flex-row gap-10 w-9/12 flex-wrap">
               <form className="flex flex-col gap-4 flex-1">
                 <input
                   type="text"
