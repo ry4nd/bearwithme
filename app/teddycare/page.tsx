@@ -1,6 +1,6 @@
 'use client';
 import { db } from "../firebase";
-import { set, ref, onValue } from "firebase/database";
+import { set, ref, onValue, get } from "firebase/database";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
@@ -146,6 +146,8 @@ export default function TeddyCare() {
   const isRecordingRef = ref(db, "/heartbeat_data/is_recording"); // note: change when database is updated
   const isVibratingRef = ref(db, "/heartbeat_data/is_vibrating");
   const playDefaultRef = ref(db, "/heartbeat_data/play_default");
+  const defaultHeartbeatRef = ref(db, "/heartbeat_data/default_heartbeat");
+  const preprocessedHeartbeatRef = ref(db, "/heartbeat_data/preprocessed_heartbeat");
 
   const handleTransmitHeartbeat = () => {
     set(isRecordingRef, 1);
@@ -156,13 +158,23 @@ export default function TeddyCare() {
 
   const handleStopVibration = () => {
     set(isVibratingRef, 0);
-    set(playDefaultRef, 0);
     setIsVibrating(false);
     setPlayDefault(false);
   }
 
   const handlePlayDefault = () => {
-    set(playDefaultRef, 1);
+    get(defaultHeartbeatRef).then((snapshot) => {
+      if (snapshot.exists()) {
+        const defaultHeartbeat = snapshot.val();
+        set(preprocessedHeartbeatRef, defaultHeartbeat);
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+
+    set(isVibratingRef, 1);
     setPlayDefault(true);
   }
   
