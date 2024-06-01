@@ -1,32 +1,32 @@
-'use client';
+"use client";
 import { db } from "../firebase";
 import { set, ref, onValue, get } from "firebase/database";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 // frontend
-import './page.css';
-import Navbar from '../components/navbar';
-import Logo from './assets/logo-lilac.png'
-import BearCrying from '../assets/bear_crying.png'
-import BearHeart from '../assets/bear_heart.png'
-import BearSleeping from '../assets/bear_sleeping.png'
-import BearHappy from '../assets/bear_happy.png'
-import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import LogoutIcon from '@mui/icons-material/Logout';
-import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
-import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
-import StopCircleRoundedIcon from '@mui/icons-material/StopCircleRounded';
-import PauseCircleFilledRoundedIcon from '@mui/icons-material/PauseCircleFilledRounded';
-import PlayCircleRoundedIcon from '@mui/icons-material/PlayCircleRounded';
-import Slider from '@mui/material/Slider';
-import VolumeDown from '@mui/icons-material/VolumeDown';
-import VolumeUp from '@mui/icons-material/VolumeUp';
-import GraphicEqRoundedIcon from '@mui/icons-material/GraphicEqRounded';
+import "./page.css";
+import Navbar from "../components/navbar";
+import Logo from "./assets/logo-lilac.png";
+import BearCrying from "../assets/bear_crying.png";
+import BearHeart from "../assets/bear_heart.png";
+import BearSleeping from "../assets/bear_sleeping.png";
+import BearHappy from "../assets/bear_happy.png";
+import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import LogoutIcon from "@mui/icons-material/Logout";
+import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
+import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
+import StopCircleRoundedIcon from "@mui/icons-material/StopCircleRounded";
+import PauseCircleFilledRoundedIcon from "@mui/icons-material/PauseCircleFilledRounded";
+import PlayCircleRoundedIcon from "@mui/icons-material/PlayCircleRounded";
+import Slider from "@mui/material/Slider";
+import VolumeDown from "@mui/icons-material/VolumeDown";
+import VolumeUp from "@mui/icons-material/VolumeUp";
+import GraphicEqRoundedIcon from "@mui/icons-material/GraphicEqRounded";
 import { on } from "events";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import {auth} from '../firebase'
+import { auth } from "../firebase";
 type AudioRecording = {
   filename: string;
   link: string;
@@ -46,16 +46,16 @@ export default function TeddyCare() {
   const [playDefault, setPlayDefault] = useState(false);
   // authentication check
   const [userLogged, setUserLogged] = useState(false);
-  
+
   const router = useRouter();
-  
+
   useEffect(() => {
     //speaker
     onValue(audioRecordingsRef, (snapshot) => {
       const data = snapshot.val();
       setAudioRecordings(Object.values(data));
 
-      console.log(data)
+      console.log(data);
     });
 
     onValue(audioPlayingRef, (snapshot) => {
@@ -89,25 +89,22 @@ export default function TeddyCare() {
 
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log('User logged in:', user.uid);
+        console.log("User logged in:", user.uid);
         setUserLogged(true);
-      } 
-      else {
-        console.log('User not logged in');
+      } else {
+        console.log("User not logged in");
         setUserLogged(false);
-        router.push('/login');
+        router.push("/login");
       }
     });
-
-
   }, []);
 
   // speaker
-  const audioRecordingsRef = ref(db, '/speaker/audioRecording');
+  const audioRecordingsRef = ref(db, "/speaker/audioRecording");
   const audioPlayingRef = ref(db, "/speaker/audioPlaying");
   const isPausedRef = ref(db, "/speaker/isPaused");
   const volumeRef = ref(db, "/speaker/volume");
-  
+
   const handlePlayAudio = async (link: string) => {
     if (currentlyPlaying !== link) {
       set(audioPlayingRef, link);
@@ -147,7 +144,10 @@ export default function TeddyCare() {
   const isVibratingRef = ref(db, "/heartbeat_data/is_vibrating");
   const playDefaultRef = ref(db, "/heartbeat_data/play_default");
   const defaultHeartbeatRef = ref(db, "/heartbeat_data/default_heartbeat");
-  const preprocessedHeartbeatRef = ref(db, "/heartbeat_data/preprocessed_heartbeat");
+  const preprocessedHeartbeatRef = ref(
+    db,
+    "/heartbeat_data/preprocessed_heartbeat"
+  );
 
   const handleTransmitHeartbeat = () => {
     set(isRecordingRef, 1);
@@ -160,30 +160,32 @@ export default function TeddyCare() {
     set(isVibratingRef, 0);
     setIsVibrating(false);
     setPlayDefault(false);
-  }
+  };
 
   const handlePlayDefault = () => {
-    get(defaultHeartbeatRef).then((snapshot) => {
-      if (snapshot.exists()) {
-        const defaultHeartbeat = snapshot.val();
-        set(preprocessedHeartbeatRef, defaultHeartbeat);
-      } else {
-        console.log("No data available");
-      }
-    }).catch((error) => {
-      console.error(error);
-    });
+    get(defaultHeartbeatRef)
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          const defaultHeartbeat = snapshot.val();
+          set(preprocessedHeartbeatRef, defaultHeartbeat);
+        } else {
+          console.log("No data available");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
 
     set(isVibratingRef, 1);
     setPlayDefault(true);
-  }
-  
+  };
+
   return (
     <div>
       <Navbar isAuthenticated={userLogged} inTeddyCare={true} />
       <div className="grid">
-        <div className='sidebar'>
-          {(isCrying ? true : false) &&
+        <div className="sidebar">
+          {(isCrying ? true : false) && (
             <section id="notifications" onClick={handleCloseNotification}>
               <h4>Notifications</h4>
               <div className="notifications-container">
@@ -193,12 +195,12 @@ export default function TeddyCare() {
                     <h6>Your Baby is Crying!</h6>
                     <p>Play a soothing sound</p>
                   </div>
-                  <CancelRoundedIcon className="close-icon"/>
+                  <CancelRoundedIcon className="close-icon" />
                 </div>
               </div>
             </section>
-          }
-          <section id='heartbeat'>
+          )}
+          <section id="heartbeat">
             <h4>Recording</h4>
             <div className="heartbeat-container">
               {isVibrating && <img src={BearHeart.src} alt="bear_heart" />}
@@ -208,42 +210,61 @@ export default function TeddyCare() {
                     <div>
                       <h6>Sending Heartbeat</h6>
                       <p>Comforting your Baby</p>
-                    </div>) : (
-                    !isRecording ? (
-                      <div>
-                        <h6>Record Your Heartbeat</h6>
-                        <p>Wear your TeddyCare bracelet</p>
-                      </div>) : (
-                      <div>
-                        <h6>Recording Your Heartbeat</h6>
-                        <p>Don&apos;t remove your bracelet</p>
-                      </div>))
-                  }
+                    </div>
+                  ) : !isRecording ? (
+                    <div>
+                      <h6>Record Your Heartbeat</h6>
+                      <p>Wear your TeddyCare bracelet</p>
+                    </div>
+                  ) : (
+                    <div>
+                      <h6>Recording Your Heartbeat</h6>
+                      <p>Don&apos;t remove your bracelet</p>
+                    </div>
+                  )}
                 </div>
-                {isVibrating && <StopCircleRoundedIcon className="stop-icon" onClick={handleStopVibration}/>}
-                {!isRecording && !isVibrating && <FavoriteRoundedIcon className="heart-icon" onClick={handleTransmitHeartbeat}/>}
+                {isVibrating && (
+                  <StopCircleRoundedIcon
+                    className="stop-icon"
+                    onClick={handleStopVibration}
+                  />
+                )}
+                {!isRecording && !isVibrating && (
+                  <FavoriteRoundedIcon
+                    className="heart-icon"
+                    onClick={handleTransmitHeartbeat}
+                  />
+                )}
               </div>
             </div>
             <div>
               <p>Play Heartbeat</p>
-              {!playDefault && <FavoriteRoundedIcon className="default-icon" onClick={handlePlayDefault}/>}
+              {!playDefault && (
+                <FavoriteRoundedIcon
+                  className="default-icon"
+                  onClick={handlePlayDefault}
+                />
+              )}
             </div>
           </section>
         </div>
         <main>
-          <section id='now-playing'>
+          <section id="now-playing">
             <h4>Now Playing</h4>
             <div className="playing-container">
-              {(currentlyPlaying !== "0") ? <img src={BearSleeping.src} alt="bear_sleeping" /> : <img src={BearHappy.src} alt="bear_happy" />}
+              {currentlyPlaying !== "0" ? (
+                <img src={BearSleeping.src} alt="bear_sleeping" />
+              ) : (
+                <img src={BearHappy.src} alt="bear_happy" />
+              )}
               <div>
                 <h6>
-                  {currentlyPlaying !== "0" ?
-                  (audioRecordings.map((audio: {filename: string, link: string}) => (
-                    audio.link === currentlyPlaying ?
-                    audio.filename :
-                    ""))
-                  ) : 
-                  "..."}
+                  {currentlyPlaying !== "0"
+                    ? audioRecordings.map(
+                        (audio: { filename: string; link: string }) =>
+                          audio.link === currentlyPlaying ? audio.filename : ""
+                      )
+                    : "..."}
                 </h6>
                 <div className="slider-container">
                   {/* {currentlyPlaying === "" ? // note for speaker: set isPaused to 0 when audio is done playing
@@ -253,35 +274,37 @@ export default function TeddyCare() {
                       <PauseCircleFilledRoundedIcon className="pause-icon" onClick={handlePauseAudio} />
                   } */}
                   <div className="slider">
-                    <VolumeDown className="volumedown-icon"/>
+                    <VolumeDown className="volumedown-icon" />
                     <Slider
                       aria-label="Volume"
                       value={volume}
                       onChange={handleVolumeChange}
-                      min={0} max={30} step={1}
-                      defaultValue={15} 
+                      min={0}
+                      max={30}
+                      step={1}
+                      defaultValue={15}
                       valueLabelDisplay="auto"
                     />
-                    <VolumeUp className="volumeup-icon"/>
+                    <VolumeUp className="volumeup-icon" />
                   </div>
                 </div>
               </div>
             </div>
           </section>
-          <section id='sounds'>
+          <section id="sounds">
             <h4>Sounds</h4>
             {audioRecordings.map((audio: AudioRecording) => (
-                <div key={audio.filename} className="audio-container">
-                  <p>{audio.filename}</p>
-                  <div onClick={() => handlePlayAudio(audio.link)}> 
-                      {currentlyPlaying === audio.link ? 
-                      (<GraphicEqRoundedIcon className="playing-icon"/>) :
-                      (<PlayCircleRoundedIcon className="audio-play-icon"/>)
-                    }
-                  </div>
+              <div key={audio.filename} className="audio-container">
+                <p>{audio.filename}</p>
+                <div onClick={() => handlePlayAudio(audio.link)}>
+                  {currentlyPlaying === audio.link ? (
+                    <GraphicEqRoundedIcon className="playing-icon" />
+                  ) : (
+                    <PlayCircleRoundedIcon className="audio-play-icon" />
+                  )}
                 </div>
-              ))
-            }
+              </div>
+            ))}
           </section>
         </main>
       </div>
