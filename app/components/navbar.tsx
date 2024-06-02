@@ -1,71 +1,67 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import logo from '../assets/logo-lilac.png';
-import './navbar.css';
-import { auth } from '../firebase';
-import { signOut } from 'firebase/auth';
-import { useRouter } from 'next/navigation';
+import Link from "next/link";
+import Image from "next/image";
+import logo from "../assets/logo-lilac.png";
+import "./navbar.css";
+import { auth } from "../firebase";
+import { signOut } from "firebase/auth";
+import { useRouter } from "next/navigation";
 
 type NavbarProps = {
-    isAuthenticated: boolean;
-    inTeddyCare: boolean;
-}
+  isAuthenticated: boolean;
+  inTeddyCare: boolean;
+};
 
-export default function Navbar({isAuthenticated, inTeddyCare}: NavbarProps) {
-    const router = useRouter();
+export default function Navbar({ isAuthenticated, inTeddyCare }: NavbarProps) {
+  const router = useRouter();
 
-    const handleLogout = () => {
-        signOut(auth).then(() => {
-            console.log('User signed out');
-            router.push('/');
-        }).catch((error) => {
-            console.log('An error occurred', error.code);
-        });
-    }
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        console.log("User signed out");
+        router.push("/");
+      })
+      .catch((error) => {
+        console.log("An error occurred", error.code);
+      });
+  };
 
-    return (
-        <nav>
-            <Link href='/' className='logo-container'>
-                <Image src={logo} alt='logo' width={27} height={32} />
-                <p>BearWithMe</p  >
-            </Link>
-            {(isAuthenticated && inTeddyCare) &&
-                <div className='logout-container'>
-                    <p onClick={handleLogout}>Logout</p>
-                </div>
-            }
-            {(isAuthenticated && !inTeddyCare) &&
-                <div className='section-container'>
-                    <Link href='/teddycare'>
-                        <p>TeddyCare</p>
-                    </Link>
-                    <Link href='#shop'>
-                        <p>Shop</p>
-                    </Link>
-                    <Link href='#contact'>
-                        <p>Contact</p>
-                    </Link>
-                    <Link href='#about'>
-                        <p>About</p>
-                    </Link>
-                </div>
-            }
-            {(!isAuthenticated && !inTeddyCare) &&
-                <div className='section-container'>
-                    <Link href='#shop'>
-                        <p>Shop</p>
-                    </Link>
-                    <Link href='#contact'>
-                        <p>Contact</p>
-                    </Link>
-                    <Link href='#about'>
-                        <p>About</p>
-                    </Link>
-                    <Link href='/login'>
-                        <p>Login</p>
-                    </Link>
-                </div>
-            }
-        </nav>
-    );
+  return (
+    <nav>
+      <Link href="/" className="logo-container">
+        <Image src={logo} alt="logo" width={27} height={32} />
+        <p>BearWithMe</p>
+      </Link>
+      {isAuthenticated && inTeddyCare && (
+        <div className="logout-container">
+          <p onClick={handleLogout}>Logout</p>
+        </div>
+      )}
+      {isAuthenticated && !inTeddyCare && (
+        <div className="section-container">
+          <Link href="/teddycare">
+            <p>TeddyCare</p>
+          </Link>
+          <Link href="#shop">
+            <p>Shop</p>
+          </Link>
+          <Link href="#contact">
+            <p>Contact</p>
+          </Link>
+        </div>
+      )}
+      {!isAuthenticated && !inTeddyCare && (
+        <div className="section-container">
+          <Link href="#shop">
+            <p>Shop</p>
+          </Link>
+          <Link href="#contact">
+            <p>Contact</p>
+          </Link>
+          <Link href="/login">
+            <p>Login</p>
+          </Link>
+        </div>
+      )}
+    </nav>
+  );
 }
