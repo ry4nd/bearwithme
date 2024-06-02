@@ -1,6 +1,7 @@
 "use client";
 // frontend
 import "./page.css";
+import "./hometailwind.css";
 import Navbar from "./components/navbar";
 import Image from "next/image";
 
@@ -100,8 +101,8 @@ export default function Home() {
                 <p className="text-md text-slate-700 w-1/2 leading-snug">
                   Communicate with your child using a heartbeat bracelet that
                   collects your heartbeat and sends it to TeddyCare, your
-                  child&apos;s cuddly companion! Ensure that your child feels at ease
-                  and at home, even when you are far away.
+                  child&apos;s cuddly companion! Ensure that your child feels at
+                  ease and at home, even when you are far away.
                 </p>
               </div>
             </div>
@@ -124,7 +125,7 @@ export default function Home() {
                   src="/features/2-heartbeat.png"
                   alt="Heartbeat simulation"
                   title="Transmit, simulate your heartbeat"
-                  description="A parent&apos;s heartbeat is one of the most familiar sounds to
+                  description="A parent's heartbeat is one of the most familiar sounds to
                   your baby. Keep them comforted by recording from your
                   bracelet to TeddyCare."
                 />
@@ -132,8 +133,8 @@ export default function Home() {
                   src="/features/3-lullaby.png"
                   alt="lullaby"
                   title="Play soothing lullabies"
-                  description="TeddyCare has lullabies that you can play when you&apos;re
-                  missing your child. Let them know that you&apos;re always by
+                  description="TeddyCare has lullabies that you can play when you're
+                  missing your child. Let them know that you're always by
                   their side!"
                 />
                 <FeatureCard
