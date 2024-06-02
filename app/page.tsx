@@ -100,7 +100,7 @@ export default function Home() {
                 <p className="text-md text-slate-700 w-1/2 leading-snug">
                   Communicate with your child using a heartbeat bracelet that
                   collects your heartbeat and sends it to TeddyCare, your
-                  child's cuddly companion! Ensure that your child feels at ease
+                  child&apos;s cuddly companion! Ensure that your child feels at ease
                   and at home, even when you are far away.
                 </p>
               </div>
@@ -155,7 +155,7 @@ export default function Home() {
             <div className="flex flex-col text-center bg-white items-center py-[50px] gap-10 w-full">
               <div className="flex flex-col gap-2">
                 <p className="text-4xl tracking-tight px-10">
-                  Meet your child's new TeddyCare!
+                  Meet your child&apos;s new TeddyCare!
                 </p>
                 <p className="text-slate-600 px-10">
                   All products come with a free account on the web app,
