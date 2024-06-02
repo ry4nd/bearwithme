@@ -124,7 +124,7 @@ export default function Home() {
                   src="/features/2-heartbeat.png"
                   alt="Heartbeat simulation"
                   title="Transmit, simulate your heartbeat"
-                  description="A parent’s heartbeat is one of the most familiar sounds to
+                  description="A parent&apos;s heartbeat is one of the most familiar sounds to
                   your baby. Keep them comforted by recording from your
                   bracelet to TeddyCare."
                 />
@@ -132,8 +132,8 @@ export default function Home() {
                   src="/features/3-lullaby.png"
                   alt="lullaby"
                   title="Play soothing lullabies"
-                  description="TeddyCare has lullabies that you can play when you’re
-                  missing your child. Let them know that you’re always by
+                  description="TeddyCare has lullabies that you can play when you&apos;re
+                  missing your child. Let them know that you&apos;re always by
                   their side!"
                 />
                 <FeatureCard
@@ -310,7 +310,7 @@ export default function Home() {
           <div className="flex flex-col text-center bg-dark-blue items-center py-[80px] px-10 gap-10 rounded-3xl w-11/12 sm:w-7/12 ">
             <div className="flex flex-col gap-2">
               <p className="text-4xl tracking-tight text-white">
-                Our team is fully committed to you and your baby’s care
+                Our team is fully committed to you and your baby&apos;s care
               </p>
               <p className="text-slate-300">
                 Our lines are always open for technical questions regarding
