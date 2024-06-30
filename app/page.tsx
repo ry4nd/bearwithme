@@ -52,99 +52,93 @@ export default function Home() {
           id="storytelling"
           className="flex justify-center items-center flex-col bg-white py-[60px]"
         >
-          <div style={{ backgroundColor: "var(--foreground)" }}>
-            <div className="flex flex-col text-center bg-white items-center py-[50px] gap-10 w-full">
+          <div className="flex flex-col text-center bg-white items-center py-[50px] gap-10 w-full">
+            <Image
+              className="w-1/2 sm:w-1/6"
+              src="/bear-white.png"
+              alt="teddy"
+              width={400}
+              height={400}
+            />
+            <div className="flex flex-col gap-3 justify-center items-center px-10">
+              <p className="text-4xl tracking-tight">
+                Hello, I am <span className="font-bold">TeddyCare</span>!
+              </p>
+              <p className="text-xl text-slate-800 w-3/4 leading-snug">
+                A smart cuddly toy that bridges the gap between parents and
+                children, fostering heartfelt connections from anywhere to
+                your home!
+              </p>
+            </div>
+          </div>
+        </section>
+        <section className="flex justify-center items-center flex-col bg-purple py-[60px]">
+          <div className="flex flex-col text-center bg-purple items-center py-[50px] gap-10 w-full">
+            <div className="flex flex-row gap-10 sm:gap-20 justify-center items-center">
               <Image
-                className="w-1/2 sm:w-1/6"
+                className="w-1/6 sm:w-1/12"
+                src="/bracelet.png"
+                alt="racelet"
+                width={400}
+                height={400}
+              />
+              <p className="uppercase text-sm font-bold">← Internet →</p>
+              <Image
+                className="w-1/6 sm:w-1/12"
                 src="/bear-white.png"
                 alt="teddy"
                 width={400}
                 height={400}
               />
-              <div className="flex flex-col gap-3 justify-center items-center px-10">
-                <p className="text-4xl tracking-tight">
-                  Hello, I am <span className="font-bold">TeddyCare</span>!
-                </p>
-                <p className="text-xl text-slate-800 w-3/4 leading-snug">
-                  A smart cuddly toy that bridges the gap between parents and
-                  children, fostering heartfelt connections from anywhere to
-                  your home!
-                </p>
-              </div>
             </div>
-          </div>
-        </section>
-        <section className="flex justify-center items-center flex-col bg-purple py-[60px]">
-          <div style={{ backgroundColor: "var(--foreground)" }}>
-            <div className="flex flex-col text-center bg-purple items-center py-[50px] gap-10 w-full">
-              <div className="flex flex-row gap-10 sm:gap-20 justify-center items-center">
-                <Image
-                  className="w-1/6 sm:w-1/12"
-                  src="/bracelet.png"
-                  alt="racelet"
-                  width={400}
-                  height={400}
-                />
-                <p className="uppercase text-sm font-bold">← Internet →</p>
-                <Image
-                  className="w-1/6 sm:w-1/12"
-                  src="/bear-white.png"
-                  alt="teddy"
-                  width={400}
-                  height={400}
-                />
-              </div>
-              <div className="flex flex-col gap-3 justify-center items-center">
-                <p className="text-2xl tracking-tight">
-                  Busy working, or staying away from home for a while?
-                </p>
-                <p className="text-md text-slate-700 w-1/2 leading-snug">
-                  Communicate with your child using a heartbeat bracelet that
-                  collects your heartbeat and sends it to TeddyCare, your
-                  child&apos;s cuddly companion! Ensure that your child feels at
-                  ease and at home, even when you are far away.
-                </p>
-              </div>
+            <div className="flex flex-col gap-3 justify-center items-center">
+              <p className="text-2xl tracking-tight">
+                Busy working, or staying away from home for a while?
+              </p>
+              <p className="text-md text-slate-700 w-1/2 leading-snug">
+                Communicate with your child using a heartbeat bracelet that
+                collects your heartbeat and sends it to TeddyCare, your
+                child&apos;s cuddly companion! Ensure that your child feels at
+                ease and at home, even when you are far away.
+              </p>
             </div>
           </div>
         </section>
         <section className="flex justify-center items-center flex-col bg-blue py-[60px]">
-          <div style={{ backgroundColor: "var(--foreground)" }}>
-            <div className="flex flex-col text-center bg-blue items-center py-[50px] gap-10 w-full">
-              <p className="text-4xl tracking-tight px-10">
-                Your Trusted Parenting Companion
-              </p>
-              <div className="container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 w-5/6 ">
-                <FeatureCard
-                  src="/features/1-iot.png"
-                  alt="IoT technology"
-                  title="Equipped with IoT technology"
-                  description="Remotely control your TeddyCare companion anytime, anywhere, through the BearWithMe companion web application."
-                />
-                <FeatureCard
-                  src="/features/2-heartbeat.png"
-                  alt="Heartbeat simulation"
-                  title="Transmit, simulate your heartbeat"
-                  description="A parent's heartbeat is one of the most familiar sounds to
-                  your baby. Keep them comforted by recording from your
-                  bracelet to TeddyCare."
-                />
-                <FeatureCard
-                  src="/features/3-lullaby.png"
-                  alt="lullaby"
-                  title="Play soothing lullabies"
-                  description="TeddyCare has lullabies that you can play when you're
-                  missing your child. Let them know that you're always by
-                  their side!"
-                />
-                <FeatureCard
-                  src="/features/4-notif.png"
-                  alt="notification"
-                  title="Notify loud sounds nearby"
-                  description="Receive alerts on your app when loud sounds, such as crying
-                  and accidental falls, are detected near TeddyCare!"
-                />
-              </div>
+          <div className="flex flex-col text-center bg-blue items-center py-[50px] gap-10 w-full">
+            <p className="text-4xl tracking-tight px-10">
+              Your Trusted Parenting Companion
+            </p>
+            <div className="container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 w-5/6 ">
+              <FeatureCard
+                src="/features/1-iot.png"
+                alt="IoT technology"
+                title="Equipped with IoT technology"
+                description="Remotely control your TeddyCare companion anytime, anywhere, through the BearWithMe companion web application."
+              />
+              <FeatureCard
+                src="/features/2-heartbeat.png"
+                alt="Heartbeat simulation"
+                title="Transmit, simulate your heartbeat"
+                description="A parent's heartbeat is one of the most familiar sounds to
+                your baby. Keep them comforted by recording from your
+                bracelet to TeddyCare."
+              />
+              <FeatureCard
+                src="/features/3-lullaby.png"
+                alt="lullaby"
+                title="Play soothing lullabies"
+                description="TeddyCare has lullabies that you can play when you're
+                missing your child. Let them know that you're always by
+                their side!"
+              />
+              <FeatureCard
+                src="/features/4-notif.png"
+                alt="notification"
+                title="Notify loud sounds nearby"
+                description="Receive alerts on your app when loud sounds, such as crying
+                and accidental falls, are detected near TeddyCare!"
+              />
             </div>
           </div>
         </section>
@@ -152,153 +146,151 @@ export default function Home() {
           id="shop"
           className="flex justify-center items-center flex-col bg-white py-[70px]"
         >
-          <div style={{ backgroundColor: "var(--foreground)" }}>
-            <div className="flex flex-col text-center bg-white items-center py-[50px] gap-10 w-full">
-              <div className="flex flex-col gap-2">
-                <p className="text-4xl tracking-tight px-10">
-                  Meet your child&apos;s new TeddyCare!
-                </p>
-                <p className="text-slate-600 px-10">
-                  All products come with a free account on the web app,
-                  BearWithMe, for remote interactions!
-                </p>
+          <div className="flex flex-col text-center bg-white items-center py-[50px] gap-10 w-full">
+            <div className="flex flex-col gap-2">
+              <p className="text-4xl tracking-tight px-10">
+                Meet your child&apos;s new TeddyCare!
+              </p>
+              <p className="text-slate-600 px-10">
+                All products come with a free account on the web app,
+                BearWithMe, for remote interactions!
+              </p>
+            </div>
+            <div className="container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-5/6 ">
+              <div className="flex flex-col gap-6 bg-slate-200 p-8 opacity-90 flex-1 rounded-xl items-center justify-center hover:bg-slate-100 transition">
+                <div className="flex flex-col items-center justify-center gap-2">
+                  <p className="uppercase text-sm leading-loose font-bold text-slate-700">
+                    BEAR
+                  </p>
+                  <Image
+                    src="/bear-white.png"
+                    alt="bear"
+                    width={400}
+                    height={400}
+                    className="w-1/2"
+                  />
+                </div>
+                <div className="flex flex-col items-center justify-center gap-2">
+                  <p className="text-xl leading-tight">TeddyCare</p>
+                  <p className="text-sm leading-snug text-slate-800">
+                    Snuggle up with the TeddyCare! Replay heartbeats, play
+                    lullabies, and get notified.
+                  </p>
+                </div>
+                <div className="flex flex-col gap-3 items-center justify-center">
+                  <div className="flex flex-row gap-2 items-center justify-center">
+                    <span className="text-sm font-semibold mr-2">Colors</span>
+                    <div className="w-5 h-5 rounded-full bg-white outline outline-1 outline-slate-500">
+                      {" "}
+                    </div>
+                    <div className="w-5 h-5 rounded-full bg-pink outline outline-1 outline-white">
+                      {" "}
+                    </div>
+                    <div className="w-5 h-5 rounded-full bg-pastel-pink outline outline-1 outline-white">
+                      {" "}
+                    </div>
+                  </div>
+                  <div className="flex flex-row gap-2 items-center justify-center">
+                    <span className="text-sm font-semibold mr-2">
+                      Backpacks
+                    </span>
+                    <div className="w-5 h-5 rounded-full bg-brown outline outline-1 outline-white">
+                      {" "}
+                    </div>
+                    <div className="w-5 h-5 rounded-full bg-bag-purple outline outline-1 outline-white">
+                      {" "}
+                    </div>
+                    <div className="w-5 h-5 rounded-full bg-bag-blue outline outline-1 outline-white">
+                      {" "}
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-row gap-3 items-center justify-between">
+                  <p className="text-xl">₱1,299</p>
+                  <p className="text-sm tracking-tight underline underline-offset-4 hover:text-slate-500 transition">
+                    SHOP NOW
+                  </p>
+                </div>
               </div>
-              <div className="container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-5/6 ">
-                <div className="flex flex-col gap-6 bg-slate-200 p-8 opacity-90 flex-1 rounded-xl items-center justify-center hover:bg-slate-100 transition">
-                  <div className="flex flex-col items-center justify-center gap-2">
-                    <p className="uppercase text-sm leading-loose font-bold text-slate-700">
-                      BEAR
-                    </p>
-                    <Image
-                      src="/bear-white.png"
-                      alt="bear"
-                      width={400}
-                      height={400}
-                      className="w-1/2"
-                    />
-                  </div>
-                  <div className="flex flex-col items-center justify-center gap-2">
-                    <p className="text-xl leading-tight">TeddyCare</p>
-                    <p className="text-sm leading-snug text-slate-800">
-                      Snuggle up with the TeddyCare! Replay heartbeats, play
-                      lullabies, and get notified.
-                    </p>
-                  </div>
-                  <div className="flex flex-col gap-3 items-center justify-center">
-                    <div className="flex flex-row gap-2 items-center justify-center">
-                      <span className="text-sm font-semibold mr-2">Colors</span>
-                      <div className="w-5 h-5 rounded-full bg-white outline outline-1 outline-slate-500">
-                        {" "}
-                      </div>
-                      <div className="w-5 h-5 rounded-full bg-pink outline outline-1 outline-white">
-                        {" "}
-                      </div>
-                      <div className="w-5 h-5 rounded-full bg-pastel-pink outline outline-1 outline-white">
-                        {" "}
-                      </div>
+              <div className="flex flex-col gap-6 bg-slate-200 p-8 opacity-90 flex-1 rounded-xl items-center justify-center hover:bg-slate-100 transition">
+                <div className="flex flex-col items-center justify-center gap-2">
+                  <p className="uppercase text-sm leading-loose font-bold text-slate-700">
+                    BUNDLE
+                  </p>
+                  <Image
+                    src="/bear-bracelet.png"
+                    alt="bear bracelet bundle"
+                    width={400}
+                    height={400}
+                    className="w-1/2"
+                  />
+                </div>
+                <div className="flex flex-col items-center justify-center gap-2">
+                  <p className="text-xl leading-tight">TeddyCare Bundle</p>
+                  <p className="text-sm leading-snug text-slate-800">
+                    Alongside the features of TeddyCare, have the option to
+                    record your own heartbeat, anytime, anywhere.
+                  </p>
+                </div>
+                <div className="flex flex-col gap-3 items-center justify-center">
+                  <div className="flex flex-row gap-2 items-center justify-center">
+                    <span className="text-sm font-semibold mr-2">Colors</span>
+                    <div className="w-5 h-5 rounded-full bg-white outline outline-1 outline-slate-500">
+                      {" "}
                     </div>
-                    <div className="flex flex-row gap-2 items-center justify-center">
-                      <span className="text-sm font-semibold mr-2">
-                        Backpacks
-                      </span>
-                      <div className="w-5 h-5 rounded-full bg-brown outline outline-1 outline-white">
-                        {" "}
-                      </div>
-                      <div className="w-5 h-5 rounded-full bg-bag-purple outline outline-1 outline-white">
-                        {" "}
-                      </div>
-                      <div className="w-5 h-5 rounded-full bg-bag-blue outline outline-1 outline-white">
-                        {" "}
-                      </div>
+                    <div className="w-5 h-5 rounded-full bg-pink outline outline-1 outline-white">
+                      {" "}
+                    </div>
+                    <div className="w-5 h-5 rounded-full bg-pastel-pink outline outline-1 outline-white">
+                      {" "}
                     </div>
                   </div>
-                  <div className="flex flex-row gap-3 items-center justify-between">
-                    <p className="text-xl">₱1,299</p>
-                    <p className="text-sm tracking-tight underline underline-offset-4 hover:text-slate-500 transition">
-                      SHOP NOW
-                    </p>
+                  <div className="flex flex-row gap-2 items-center justify-center">
+                    <span className="text-sm font-semibold mr-2">
+                      Backpacks
+                    </span>
+                    <div className="w-5 h-5 rounded-full bg-brown outline outline-1 outline-white">
+                      {" "}
+                    </div>
+                    <div className="w-5 h-5 rounded-full bg-bag-purple outline outline-1 outline-white">
+                      {" "}
+                    </div>
+                    <div className="w-5 h-5 rounded-full bg-bag-blue outline outline-1 outline-white">
+                      {" "}
+                    </div>
                   </div>
                 </div>
-                <div className="flex flex-col gap-6 bg-slate-200 p-8 opacity-90 flex-1 rounded-xl items-center justify-center hover:bg-slate-100 transition">
-                  <div className="flex flex-col items-center justify-center gap-2">
-                    <p className="uppercase text-sm leading-loose font-bold text-slate-700">
-                      BUNDLE
-                    </p>
-                    <Image
-                      src="/bear-bracelet.png"
-                      alt="bear bracelet bundle"
-                      width={400}
-                      height={400}
-                      className="w-1/2"
-                    />
-                  </div>
-                  <div className="flex flex-col items-center justify-center gap-2">
-                    <p className="text-xl leading-tight">TeddyCare Bundle</p>
-                    <p className="text-sm leading-snug text-slate-800">
-                      Alongside the features of TeddyCare, have the option to
-                      record your own heartbeat, anytime, anywhere.
-                    </p>
-                  </div>
-                  <div className="flex flex-col gap-3 items-center justify-center">
-                    <div className="flex flex-row gap-2 items-center justify-center">
-                      <span className="text-sm font-semibold mr-2">Colors</span>
-                      <div className="w-5 h-5 rounded-full bg-white outline outline-1 outline-slate-500">
-                        {" "}
-                      </div>
-                      <div className="w-5 h-5 rounded-full bg-pink outline outline-1 outline-white">
-                        {" "}
-                      </div>
-                      <div className="w-5 h-5 rounded-full bg-pastel-pink outline outline-1 outline-white">
-                        {" "}
-                      </div>
-                    </div>
-                    <div className="flex flex-row gap-2 items-center justify-center">
-                      <span className="text-sm font-semibold mr-2">
-                        Backpacks
-                      </span>
-                      <div className="w-5 h-5 rounded-full bg-brown outline outline-1 outline-white">
-                        {" "}
-                      </div>
-                      <div className="w-5 h-5 rounded-full bg-bag-purple outline outline-1 outline-white">
-                        {" "}
-                      </div>
-                      <div className="w-5 h-5 rounded-full bg-bag-blue outline outline-1 outline-white">
-                        {" "}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex flex-row gap-3 items-center justify-between">
-                    <p className="text-xl">₱1,449</p>
-                    <p className="text-sm tracking-tight underline underline-offset-4 hover:text-slate-500 transition">
-                      SHOP NOW
-                    </p>
-                  </div>
+                <div className="flex flex-row gap-3 items-center justify-between">
+                  <p className="text-xl">₱1,449</p>
+                  <p className="text-sm tracking-tight underline underline-offset-4 hover:text-slate-500 transition">
+                    SHOP NOW
+                  </p>
                 </div>
-                <div className="flex flex-col gap-6 bg-slate-200 p-8 opacity-90 flex-1 rounded-xl items-center justify-center hover:bg-slate-100 transition">
-                  <div className="flex flex-col items-center justify-center gap-2">
-                    <p className="uppercase text-sm leading-loose font-bold text-slate-700">
-                      BRACELET
-                    </p>
-                    <Image
-                      src="/bracelet.png"
-                      alt="bracelet"
-                      width={400}
-                      height={400}
-                      className="w-1/2"
-                    />
-                  </div>
-                  <div className="flex flex-col items-center justify-center gap-2">
-                    <p className="text-xl leading-tight">TeddyCare</p>
-                    <p className="text-sm leading-snug text-slate-800">
-                      Remotely record your heartbeat!
-                    </p>
-                  </div>
-                  <div className="flex flex-row gap-3 items-center justify-between">
-                    <p className="text-xl">₱249</p>
-                    <p className="text-sm tracking-tight underline underline-offset-4 hover:text-slate-500 transition">
-                      SHOP NOW
-                    </p>
-                  </div>
+              </div>
+              <div className="flex flex-col gap-6 bg-slate-200 p-8 opacity-90 flex-1 rounded-xl items-center justify-center hover:bg-slate-100 transition">
+                <div className="flex flex-col items-center justify-center gap-2">
+                  <p className="uppercase text-sm leading-loose font-bold text-slate-700">
+                    BRACELET
+                  </p>
+                  <Image
+                    src="/bracelet.png"
+                    alt="bracelet"
+                    width={400}
+                    height={400}
+                    className="w-1/2"
+                  />
+                </div>
+                <div className="flex flex-col items-center justify-center gap-2">
+                  <p className="text-xl leading-tight">TeddyCare</p>
+                  <p className="text-sm leading-snug text-slate-800">
+                    Remotely record your heartbeat!
+                  </p>
+                </div>
+                <div className="flex flex-row gap-3 items-center justify-between">
+                  <p className="text-xl">₱249</p>
+                  <p className="text-sm tracking-tight underline underline-offset-4 hover:text-slate-500 transition">
+                    SHOP NOW
+                  </p>
                 </div>
               </div>
             </div>
