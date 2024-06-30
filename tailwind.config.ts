@@ -8,21 +8,19 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-       
-      },
+      backgroundImage: {},
       colors: {
-        'blue': '#8DC9E2',
-        foreground: 'var(--foreground)',
-        'purple': '#C9AED6',
-        'pink': '#DD667D',
-        'pastel-pink': '#DDABAD',
-        'brown': '#704b3e',
-        'bag-purple': "#bcb3db",
-        'bag-blue': "#398bca",
-        'dark-blue': '#344045',
-        'purple-light': '#E9D9F1'
-      }
+        blue: "#8DC9E2",
+        purple: "#C9AED6",
+        "brown-light": "#F5E9E2",
+        pink: "#DD667D",
+        "pastel-pink": "#DDABAD",
+        brown: "#704b3e",
+        "bag-purple": "#bcb3db",
+        "bag-blue": "#398bca",
+        "dark-blue": "#344045",
+        "purple-light": "#E9D9F1",
+      },
     },
   },
   plugins: [],
