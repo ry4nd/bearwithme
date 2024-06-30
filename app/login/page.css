@@ -1,17 +1,17 @@
-.grid {
+/* .grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-}
+} */
 
-#login {
+/* #login {
     grid-column: span 12;
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
+} */
 
-.login-background {
+/* .login-background {
     background-color: var(--primary);
     color: var(--primary-background);
     padding: 32px;
@@ -20,31 +20,31 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-}
+} */
 
-.login-background > h3 {
+/* .login-background > h3 {
     margin-bottom: 8px;
-}
+} */
 
-.name-container {
+/* .name-container {
     display: flex;
     flex-direction: column;
-}
+} */
 
-.name-container > div {
+/* .name-container > div {
     display: flex;
     flex-direction: column;
     width: 100%;
     overflow: hidden;
-}
+} */
 
-form {
+/* form {
     display: flex;
     flex-direction: column;
     width: 100%;
-}
+} */
 
-input {
+/* input {
     margin-bottom: 8px;
     padding: 8px;
     border-radius: 8px;
@@ -54,17 +54,17 @@ input {
 input:focus {
     outline: none;
     border: 2px solid var(--primary-background);
-}
+} */
 
-label {
+/* label {
     margin-bottom: 4px;
-}
+} */
 
-.error {
+/* .error {
     margin-bottom: 8px;
-}
+} */
 
-button {
+/* button {
     background-color: var(--secondary-background);
     padding: 8px 16px;
     border-radius: 8px;
@@ -75,16 +75,16 @@ button {
 }
 button:hover {
     background-color: var(--primary-background);
-}
+} */
 
-.signup-link {
+/* .signup-link {
     color: var(--primary-background);
     font-weight: bold;
     text-decoration: none;
     cursor: pointer;
-}
+} */
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
     body {
         font-size: 16px;
     }
@@ -115,9 +115,9 @@ button:hover {
     .error {
         margin-bottom: 16px;
     }
-}
+} */
 
-@media (min-width: 1024px) {
+/* @media (min-width: 1024px) {
     body {
         font-size: 18px;
     }
@@ -132,4 +132,4 @@ button:hover {
         justify-content: space-between;
         gap: 32px;
     }
-}
+} */
