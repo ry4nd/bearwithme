@@ -26,39 +26,41 @@ export default function Navbar({ isAuthenticated, inTeddyCare }: NavbarProps) {
   };
 
   return (
-    <nav>
-      <Link href="/" className="logo-container">
+    <nav className="bg-dark-blue text-white p-4 sm:px-8 flex justify-between items-center">
+      <Link href="/" className="flex items-center gap-2 sm:gap-4">
         <Image src={logo} alt="logo" width={27} height={32} />
-        <p>BearWithMe</p>
+        <p className="hover:text-blue">BearWithMe</p>
       </Link>
       {isAuthenticated && inTeddyCare && (
-        <div className="logout-container">
-          <p onClick={handleLogout}>Logout</p>
+        <div>
+          <p className="hover:text-blue" onClick={handleLogout}>
+            Logout
+          </p>
         </div>
       )}
       {isAuthenticated && !inTeddyCare && (
-        <div className="section-container">
+        <div className="flex items-center gap-2 sm:gap-4">
           <Link href="/teddycare">
-            <p>TeddyCare</p>
+            <p className="hover:text-blue">TeddyCare</p>
           </Link>
           <Link href="#shop">
-            <p>Shop</p>
+            <p className="hover:text-blue">Shop</p>
           </Link>
           <Link href="#contact">
-            <p>Contact</p>
+            <p className="hover:text-blue">Contact</p>
           </Link>
         </div>
       )}
       {!isAuthenticated && !inTeddyCare && (
-        <div className="section-container">
+        <div className="flex items-center gap-2 sm:gap-4">
           <Link href="#shop">
-            <p>Shop</p>
+            <p className="hover:text-blue">Shop</p>
           </Link>
           <Link href="#contact">
-            <p>Contact</p>
+            <p className="hover:text-blue">Contact</p>
           </Link>
           <Link href="/login">
-            <p>Login</p>
+            <p className="hover:text-blue">Login</p>
           </Link>
         </div>
       )}

@@ -1,67 +1,67 @@
-nav {
-    background-color: var(--secondary-background);
-    color: var(--background);
-    padding: 16px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
+/* nav {
+  background-color: var(--secondary-background);
+  color: var(--background);
+  padding: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+} */
 
-.logo-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    text-decoration: none;
+/* .logo-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-decoration: none;
 }
 
 .logo-container p {
-    color: var(--foreground);
-    margin-left: 8px;
-    font-weight: bold;
+  color: var(--foreground);
+  margin-left: 8px;
+  font-weight: bold;
 }
 .logo-container p:hover {
-    color: var(--secondary);
-}
+  color: var(--secondary);
+} */
 
-.section-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 8px;
-}
+/* .section-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+} */
 
-.section-container * {
-    font-weight: normal;
-    text-decoration: none;
-    color: var(--foreground);
+/* .section-container * {
+  font-weight: normal;
+  text-decoration: none;
+  color: var(--foreground);
 }
 .section-container * :hover {
-    color: var(--secondary);
-}
+  color: var(--secondary);
+} */
 
-.logout-container * {
-    font-weight: normal;
-    cursor: pointer;
+/* .logout-container * {
+  font-weight: normal;
+  cursor: pointer;
 }
 .logout-container:hover {
-    color: var(--secondary);
-}
+  color: var(--secondary);
+} */
 
-@media (min-width: 1024px) {
-    body {
-        font-size: 18px;
-    }
+/* @media (min-width: 1024px) {
+  body {
+    font-size: 18px;
+  }
 
-    nav {
-        padding: 16px 32px;
-    }
+  nav {
+    padding: 16px 32px;
+  }
 
-    .logo-container p {
-        margin-left: 16px;
-    }
+  .logo-container p {
+    margin-left: 16px;
+  }
 
-    .section-container {
-        gap: 16px;
-    }
-}
+  .section-container {
+    gap: 16px;
+  }
+} */
