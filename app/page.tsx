@@ -1,7 +1,6 @@
 "use client";
 // frontend
 import "./page.css";
-import "./hometailwind.css";
 import Navbar from "./components/navbar";
 import Image from "next/image";
 
