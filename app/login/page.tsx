@@ -58,7 +58,7 @@ export default function Login() {
             value={email}
             onChange={(event) => setEmail(event.target.value)}
             required
-            className="p-2 rounded-lg outline-none focus:ring-1 focus:ring-blue"
+            className="p-2 rounded-lg outline-none focus:ring-1 focus:ring-blue text-black"
           />
           <p>Password</p>
           <input
@@ -67,7 +67,7 @@ export default function Login() {
             value={password}
             onChange={(event) => setPassword(event.target.value)}
             required
-            className="p-2 rounded-lg outline-none focus:ring-1 focus:ring-blue"
+            className="p-2 rounded-lg outline-none focus:ring-1 focus:ring-blue text-black"
           />
           {error && <label className="error">{error}</label>}
           <button
