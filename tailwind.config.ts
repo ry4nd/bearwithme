@@ -20,6 +20,7 @@ const config: Config = {
         "bag-blue": "#398bca",
         "dark-blue": "#344045",
         "purple-light": "#E9D9F1",
+        "blue-light": "#D9E9F1",
       },
     },
   },
